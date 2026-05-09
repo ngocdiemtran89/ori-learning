@@ -180,6 +180,7 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
 
     <div class="sb-section">Công cụ</div>
     <button class="sb-item" data-key="vocab" onclick="go('vocab')"><span class="ico">📚</span> Từ Vựng TOEIC</button>
+    <button class="sb-item" data-key="quiz" onclick="go('quiz')"><span class="ico">✈️</span> Quiz Aviation<span class="badge-hot">New</span></button>
     <button class="sb-item" data-key="recommend" onclick="go('recommend')"><span class="ico">🧭</span> Gợi Ý Khóa Học</button>
   </nav>
   <div class="sb-footer">
@@ -207,6 +208,7 @@ var TOOLS = {
   part5:     {url:'https://ori-part5-grammar.vercel.app', name:'Part 5 — Grammar', tag:'Reading · AI'},
   part7:     {url:'https://part-7-toeic-ori.vercel.app', name:'Part 7 — Reading', tag:'Reading'},
   vocab:     {url:'https://ori-toeic-vocab.vercel.app', name:'Từ Vựng TOEIC', tag:'Vocabulary'},
+  quiz:      {url:'https://ori-toeic-cabin-crew-quiz.vercel.app', name:'Quiz Aviation TOEIC', tag:'Test Bank'},
   recommend: {url:'https://ori-course-recommender.vercel.app', name:'Gợi Ý Khóa Học', tag:'Tư vấn'}
 };
 
@@ -301,6 +303,7 @@ function renderDashboard(){
     {key:'part5',ico:'📖',name:'Part 5 — Grammar',desc:'Bài tập từ loại, ngữ pháp, từ vựng — AI giải thích chi tiết từng câu. 120+ câu hỏi.',tag:'Reading · AI',cls:'c5'},
     {key:'part7',ico:'📑',name:'Part 7 — Reading',desc:'Đọc passage + trả lời — học tư duy scan/skim từ chuyên gia ORI. Mẹo tiết kiệm thời gian.',tag:'Reading',cls:'c6'},
     {key:'vocab',ico:'📚',name:'Từ Vựng TOEIC',desc:'600 từ chia theo band 450→800+. Học đúng level, không học thừa không học thiếu.',tag:'Vocabulary',cls:'c7'},
+    {key:'quiz',ico:'✈️',name:'Quiz Aviation TOEIC',desc:'5 bộ đề x 25 câu — luyện TOEIC chuyên ngành hàng không Cabin Crew. Chấm điểm tự động.',tag:'Test Bank',cls:'c3'},
     {key:'recommend',ico:'🧭',name:'Gợi Ý Khóa Học',desc:'Chưa biết học gì? Trả lời 5 câu → ORI gợi ý khóa + lộ trình. Học thử 2 buổi miễn phí!',tag:'Tư vấn',cls:'c2'}
   ];
 
@@ -318,7 +321,7 @@ function renderDashboard(){
 
   // Stats
   h += '<div class="stat-row">';
-  h += '<div class="stat-card"><div class="stat-val">8</div><div class="stat-lbl">Công cụ miễn phí</div></div>';
+  h += '<div class="stat-card"><div class="stat-val">9</div><div class="stat-lbl">Công cụ miễn phí</div></div>';
   h += '<div class="stat-card"><div class="stat-val">Part 1-7</div><div class="stat-lbl">Đầy đủ 7 Part</div></div>';
   h += '<div class="stat-card"><div class="stat-val">AI</div><div class="stat-lbl">Tạo đề thông minh</div></div>';
   h += '<div class="stat-card"><div class="stat-val">Free</div><div class="stat-lbl">Không mất phí</div></div>';
@@ -362,7 +365,7 @@ function renderDashboard(){
   // Tools
   h += '<div class="section-title">🧰 Công cụ bổ trợ</div>';
   h += '<div class="dash-grid">';
-  [cards[6], cards[7]].forEach(function(c){
+  [cards[6], cards[7], cards[8]].forEach(function(c){
     h += buildCard(c);
   });
   h += '</div>';
