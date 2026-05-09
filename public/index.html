@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ORI Learning — Hệ Thống Học Tập TOEIC</title>
-<meta name="description" content="Nền tảng học TOEIC toàn diện từ ORI Academy. Luyện Part 1-7, AI Planner, Từ vựng, Test đầu vào.">
+<meta name="description" content="Nền tảng học TOEIC toàn diện từ ORI Academy. Luyện Part 1-7, AI Planner, Từ vựng, Test đầu vào. TOEIC · Việc Làm · Hay Dùng.">
+<meta name="theme-color" content="#0a0e1a">
+<meta property="og:title" content="ORI Learning — Hệ Thống Học Tập TOEIC">
+<meta property="og:description" content="Nền tảng học TOEIC toàn diện từ ORI Academy — Luyện Part 1-7, AI Study Planner, Từ vựng theo band điểm.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ori-learning.vercel.app">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -15,38 +23,59 @@
   --green:#00b894;--red:#ff6b6b;--orange:#fdcb6e;--blue:#74b9ff;
   --text:#fff;--text2:#b2bec3;--text3:#636e72;
   --radius:12px;--sh:0 4px 20px rgba(0,0,0,0.3);
+  --transition:.25s cubic-bezier(.4,0,.2,1);
 }
 html,body{height:100%;overflow:hidden}
 body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);display:flex}
 
 /* SIDEBAR */
-.sidebar{width:260px;min-height:100vh;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;transition:transform .25s}
+.sidebar{width:260px;min-height:100vh;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;transition:transform var(--transition)}
 .sb-brand{padding:20px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
-.sb-logo{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),var(--teal));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#fff}
+.sb-logo{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),var(--teal));border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#fff;box-shadow:0 4px 15px rgba(108,92,231,0.3)}
 .sb-title{font-size:15px;font-weight:700}
 .sb-title span{display:block;font-size:11px;font-weight:400;color:var(--text2);margin-top:2px}
 .sb-nav{flex:1;padding:14px 10px;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
 .sb-section{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);padding:16px 14px 6px;font-weight:600}
-.sb-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border:none;background:transparent;color:var(--text2);font-size:13px;font-family:inherit;border-radius:8px;cursor:pointer;transition:all .15s;text-align:left;width:100%}
+.sb-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border:none;background:transparent;color:var(--text2);font-size:13px;font-family:inherit;border-radius:8px;cursor:pointer;transition:all .15s;text-align:left;width:100%;position:relative}
 .sb-item:hover{background:var(--accent-glow);color:var(--text)}
 .sb-item.active{background:var(--accent-glow);color:var(--accent2);font-weight:600;border-left:3px solid var(--accent)}
 .sb-item .ico{font-size:16px;width:24px;text-align:center}
 .sb-item .badge{margin-left:auto;background:var(--accent);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700}
+.sb-item .badge-hot{margin-left:auto;background:var(--red);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700}
 .sb-footer{padding:14px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);text-align:center}
 .sb-footer a{color:var(--accent2);text-decoration:none}
 
 /* MOBILE */
 .mob-header{display:none;position:fixed;top:0;left:0;right:0;height:54px;background:var(--sidebar);border-bottom:1px solid var(--border);align-items:center;padding:0 14px;z-index:90;gap:10px}
-.mob-header h1{font-size:14px;flex:1;background:linear-gradient(135deg,var(--accent),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hamburger{background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:95}
+.mob-header h1{font-size:14px;flex:1;background:linear-gradient(135deg,var(--accent),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
+.hamburger{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:4px}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:95;opacity:0;transition:opacity var(--transition)}
+.sb-overlay.show{display:block;opacity:1}
 
 /* MAIN */
 .main{margin-left:260px;flex:1;height:100vh;display:flex;flex-direction:column}
-.main iframe{flex:1;width:100%;height:100%;border:none}
+
+/* TOOL HEADER BAR (when viewing a tool) */
+.tool-header{height:48px;background:var(--sidebar);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0;animation:slideDown .3s ease-out}
+.tool-header .back-btn{background:none;border:1px solid var(--border);color:var(--text2);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit;display:flex;align-items:center;gap:6px;transition:all .15s}
+.tool-header .back-btn:hover{background:var(--accent-glow);color:var(--text);border-color:var(--accent)}
+.tool-header .tool-name{font-size:13px;font-weight:600;color:var(--text)}
+.tool-header .tool-badge{font-size:10px;color:var(--accent2);background:var(--accent-glow);padding:2px 8px;border-radius:10px}
+
+/* IFRAME CONTAINER */
+.iframe-wrap{flex:1;position:relative}
+.iframe-wrap iframe{width:100%;height:100%;border:none}
+.iframe-loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);z-index:5;transition:opacity .4s}
+.iframe-loader.hidden{opacity:0;pointer-events:none}
+.loader-spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+.loader-text{margin-top:14px;font-size:13px;color:var(--text2)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* DASHBOARD */
-.dash{flex:1;overflow-y:auto;padding:30px}
+.dash{flex:1;overflow-y:auto;padding:30px;animation:fadeIn .4s ease-out}
 .dash-head{margin-bottom:24px}
 .dash-head h2{font-size:22px;font-weight:800}
 .dash-head p{color:var(--text2);font-size:13px;margin-top:4px}
@@ -66,9 +95,30 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
 .c5::before{background:linear-gradient(90deg,#74b9ff,#0984e3)}.c5 .dc-tag{background:rgba(116,185,255,0.12);color:#74b9ff}
 .c6::before{background:linear-gradient(90deg,#00b894,#55efc4)}.c6 .dc-tag{background:rgba(0,184,148,0.12);color:#00b894}
 .c7::before{background:linear-gradient(90deg,#e17055,#d63031)}.c7 .dc-tag{background:rgba(225,112,85,0.12);color:#e17055}
-.welcome-banner{background:linear-gradient(135deg,var(--accent),#4834d4,var(--teal));border-radius:var(--radius);padding:28px;margin-bottom:24px;position:relative;overflow:hidden}
+.welcome-banner{background:linear-gradient(135deg,var(--accent),#4834d4,var(--teal));border-radius:var(--radius);padding:28px;margin-bottom:24px;position:relative;overflow:hidden;animation:slideUp .5s ease-out}
+.welcome-banner::after{content:'';position:absolute;top:-50%;right:-30%;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,0.08) 0%,transparent 70%);pointer-events:none}
 .welcome-banner h3{font-size:18px;font-weight:800;margin-bottom:6px}
 .welcome-banner p{font-size:13px;opacity:.85;line-height:1.6}
+.welcome-banner .wb-cta{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 18px;background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;text-decoration:none;font-size:12px;font-weight:600;transition:all .2s}
+.welcome-banner .wb-cta:hover{background:rgba(255,255,255,0.25);transform:translateY(-1px)}
+
+/* SECTION DIVIDER */
+.section-title{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin:28px 0 14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* STAT CARDS */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;animation:slideUp .4s ease-out}
+.stat-card .stat-val{font-size:24px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card .stat-lbl{font-size:11px;color:var(--text3);margin-top:4px}
+
+/* ERROR STATE */
+.error-state{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:40px;text-align:center}
+.error-state .error-ico{font-size:48px;margin-bottom:16px}
+.error-state h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.error-state p{font-size:13px;color:var(--text2);margin-bottom:20px;max-width:400px;line-height:1.6}
+.error-state .retry-btn{background:var(--accent);color:#fff;border:none;padding:10px 24px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.error-state .retry-btn:hover{background:#5b4bd5;transform:translateY(-2px)}
 
 @media(max-width:768px){
   .sidebar{transform:translateX(-100%)}
@@ -78,6 +128,11 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
   .main{margin-left:0;padding-top:54px}
   .dash{padding:16px}
   .dash-grid{grid-template-columns:1fr}
+  .welcome-banner{padding:20px}
+  .welcome-banner h3{font-size:16px}
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  .tool-header{padding:0 10px}
+  .tool-header .tool-name{font-size:12px}
 }
 </style>
 </head>
@@ -92,45 +147,49 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
   </div>
   <nav class="sb-nav">
     <div class="sb-section">Tổng quan</div>
-    <button class="sb-item active" onclick="go('home')"><span class="ico">🏠</span> Trang Chủ</button>
-    <button class="sb-item" onclick="go('planner')"><span class="ico">🤖</span> AI Study Planner<span class="badge">AI</span></button>
-    <button class="sb-item" onclick="go('placement')"><span class="ico">📝</span> Test Đầu Vào</button>
+    <button class="sb-item active" data-key="home" onclick="go('home')"><span class="ico">🏠</span> Trang Chủ</button>
+    <button class="sb-item" data-key="planner" onclick="go('planner')"><span class="ico">🤖</span> AI Study Planner<span class="badge">AI</span></button>
+    <button class="sb-item" data-key="placement" onclick="go('placement')"><span class="ico">📝</span> Test Đầu Vào</button>
 
     <div class="sb-section">Luyện TOEIC</div>
-    <button class="sb-item" onclick="go('part1')"><span class="ico">📸</span> Part 1 — Photographs</button>
-    <button class="sb-item" onclick="go('part2')"><span class="ico">🎧</span> Part 2 — Q&A</button>
-    <button class="sb-item" onclick="go('part5')"><span class="ico">📖</span> Part 5 — Grammar<span class="badge">🔥</span></button>
-    <button class="sb-item" onclick="go('part7')"><span class="ico">📑</span> Part 7 — Reading</button>
+    <button class="sb-item" data-key="part1" onclick="go('part1')"><span class="ico">📸</span> Part 1 — Photographs</button>
+    <button class="sb-item" data-key="part2" onclick="go('part2')"><span class="ico">🎧</span> Part 2 — Q&A</button>
+    <button class="sb-item" data-key="part5" onclick="go('part5')"><span class="ico">📖</span> Part 5 — Grammar<span class="badge-hot">🔥</span></button>
+    <button class="sb-item" data-key="part7" onclick="go('part7')"><span class="ico">📑</span> Part 7 — Reading</button>
 
     <div class="sb-section">Công cụ</div>
-    <button class="sb-item" onclick="go('vocab')"><span class="ico">📚</span> Từ Vựng TOEIC</button>
-    <button class="sb-item" onclick="go('quiz')"><span class="ico">🎯</span> Quiz Tổng Hợp</button>
-    <button class="sb-item" onclick="go('recommend')"><span class="ico">🧭</span> Gợi Ý Khóa Học</button>
+    <button class="sb-item" data-key="vocab" onclick="go('vocab')"><span class="ico">📚</span> Từ Vựng TOEIC</button>
+    <button class="sb-item" data-key="recommend" onclick="go('recommend')"><span class="ico">🧭</span> Gợi Ý Khóa Học</button>
   </nav>
-  <div class="sb-footer">© 2026 <a href="https://zalo.me/0906303373" target="_blank">ORI Academy</a> · <a href="tel:0906303373" style="color:var(--teal);text-decoration:none">0906 303 373</a></div>
+  <div class="sb-footer">
+    <div style="margin-bottom:6px;font-weight:600;color:var(--accent2)">📞 Tư vấn miễn phí</div>
+    <a href="https://zalo.me/0906303373" target="_blank" style="color:var(--teal)">💬 Nhắn Zalo ORI</a> · <a href="tel:0906303373" style="color:var(--teal);text-decoration:none">0906 303 373</a>
+    <div style="margin-top:8px;opacity:.6">© 2026 ORI Academy</div>
+  </div>
 </aside>
 
 <header class="mob-header">
-  <button class="hamburger" onclick="toggleSB()">☰</button>
+  <button class="hamburger" onclick="toggleSB()" aria-label="Mở menu">☰</button>
   <h1>ORI Learning</h1>
 </header>
 
 <main class="main" id="main">
-  <!-- Dashboard or iframe loads here -->
+  <!-- Dashboard or tool loads here -->
 </main>
 
 <script>
 var TOOLS = {
-  planner:   {url:'https://ori-toeic-planner.vercel.app', name:'AI Study Planner'},
-  placement: {url:'https://ori-toeic-placement-test.vercel.app', name:'Test Đầu Vào'},
-  part1:     {url:'https://ori-toeic-part1.vercel.app', name:'Part 1 — Photographs'},
-  part2:     {url:'https://toeic-part2-app.vercel.app', name:'Part 2 — Q&A'},
-  part5:     {url:'https://ori-part5-grammar.vercel.app', name:'Part 5 — Grammar'},
-  part7:     {url:'https://part-7-toeic-ori.vercel.app', name:'Part 7 — Reading'},
-  vocab:     {url:'https://ori-toeic-vocab.vercel.app', name:'Từ Vựng TOEIC'},
-  quiz:      {url:'https://ori-toeic-quiz.vercel.app', name:'Quiz Tổng Hợp'},
-  recommend: {url:'https://ori-course-recommender.vercel.app', name:'Gợi Ý Khóa Học'}
+  planner:   {url:'https://ori-toeic-planner.vercel.app', name:'AI Study Planner', tag:'Trí tuệ nhân tạo'},
+  placement: {url:'https://ori-toeic-placement-test.vercel.app', name:'Test Đầu Vào', tag:'Miễn phí'},
+  part1:     {url:'https://ori-toeic-part1.vercel.app', name:'Part 1 — Photographs', tag:'Listening'},
+  part2:     {url:'https://toeic-part2-app.vercel.app', name:'Part 2 — Q&A', tag:'Listening'},
+  part5:     {url:'https://ori-part5-grammar.vercel.app', name:'Part 5 — Grammar', tag:'Reading · AI'},
+  part7:     {url:'https://part-7-toeic-ori.vercel.app', name:'Part 7 — Reading', tag:'Reading'},
+  vocab:     {url:'https://ori-toeic-vocab.vercel.app', name:'Từ Vựng TOEIC', tag:'Vocabulary'},
+  recommend: {url:'https://ori-course-recommender.vercel.app', name:'Gợi Ý Khóa Học', tag:'Tư vấn'}
 };
+
+var currentPage = 'home';
 
 function toggleSB(){
   document.getElementById('sidebar').classList.toggle('open');
@@ -140,12 +199,14 @@ function toggleSB(){
 function go(page){
   // Update sidebar active
   document.querySelectorAll('.sb-item').forEach(function(b){b.classList.remove('active')});
-  var btns = document.querySelectorAll('.sb-item');
-  btns.forEach(function(b){if(b.textContent.toLowerCase().indexOf(page)>=0 || b.getAttribute('onclick').indexOf("'"+page+"'")>=0) b.classList.add('active')});
+  var target = document.querySelector('.sb-item[data-key="'+page+'"]');
+  if(target) target.classList.add('active');
 
   // Close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('overlay').classList.remove('show');
+
+  currentPage = page;
 
   if(page === 'home'){
     renderDashboard();
@@ -154,35 +215,124 @@ function go(page){
 
   var tool = TOOLS[page];
   if(!tool) return;
-  document.getElementById('main').innerHTML = '<iframe src="'+tool.url+'" allow="microphone; clipboard-write"></iframe>';
+
+  // Build tool view with header + loading spinner + iframe
+  var h = '<div class="tool-header">';
+  h += '<button class="back-btn" onclick="go(\'home\')">← Trang chủ</button>';
+  h += '<span class="tool-name">'+tool.name+'</span>';
+  h += '<span class="tool-badge">'+tool.tag+'</span>';
+  h += '</div>';
+  h += '<div class="iframe-wrap">';
+  h += '<div class="iframe-loader" id="iframe-loader">';
+  h += '<div class="loader-spinner"></div>';
+  h += '<div class="loader-text">Đang tải '+tool.name+'...</div>';
+  h += '</div>';
+  h += '<iframe src="'+tool.url+'" allow="microphone; clipboard-write" id="tool-iframe" onload="onIframeLoad()" onerror="onIframeError()"></iframe>';
+  h += '</div>';
+  document.getElementById('main').innerHTML = h;
+
+  // Timeout fallback — hide loader after 8s even if onload doesn't fire
+  setTimeout(function(){
+    var loader = document.getElementById('iframe-loader');
+    if(loader) loader.classList.add('hidden');
+  }, 8000);
+}
+
+function onIframeLoad(){
+  var loader = document.getElementById('iframe-loader');
+  if(loader) loader.classList.add('hidden');
+}
+
+function onIframeError(){
+  var loader = document.getElementById('iframe-loader');
+  if(loader) loader.classList.add('hidden');
+  // Show error state (though most iframe errors don't trigger this)
+}
+
+function getGreeting(){
+  var h = new Date().getHours();
+  if(h < 12) return '🌅 Chào buổi sáng!';
+  if(h < 18) return '☀️ Chào buổi chiều!';
+  return '🌙 Chào buổi tối!';
 }
 
 function renderDashboard(){
   var cards = [
-    {key:'planner',ico:'🤖',name:'AI Study Planner',desc:'AI lập kế hoạch học tập TOEIC cá nhân hóa theo điểm số và mục tiêu.',tag:'Trí tuệ nhân tạo',cls:'c1'},
-    {key:'placement',ico:'📝',name:'Test Đầu Vào',desc:'Kiểm tra trình độ hiện tại để ORI tư vấn khóa học phù hợp nhất.',tag:'Miễn phí',cls:'c2'},
+    {key:'planner',ico:'🤖',name:'AI Study Planner',desc:'AI lập kế hoạch học tập TOEIC cá nhân hóa theo điểm số và mục tiêu. Theo dõi tiến độ hàng ngày.',tag:'Trí tuệ nhân tạo',cls:'c1'},
+    {key:'placement',ico:'📝',name:'Test Đầu Vào',desc:'Kiểm tra trình độ hiện tại để ORI tư vấn khóa học phù hợp nhất. Miễn phí 100%.',tag:'Miễn phí',cls:'c2'},
     {key:'part1',ico:'📸',name:'Part 1 — Photographs',desc:'Luyện mô tả hình ảnh với 6 câu/đề. Nghe audio và chọn câu đúng.',tag:'Listening',cls:'c3'},
     {key:'part2',ico:'🎧',name:'Part 2 — Q&A',desc:'Luyện nghe câu hỏi-đáp. Phản xạ nhanh với 25 câu mỗi bộ đề.',tag:'Listening',cls:'c4'},
-    {key:'part5',ico:'📖',name:'Part 5 — Grammar',desc:'Từ loại, ngữ pháp, từ vựng. AI tạo đề và giải thích chi tiết.',tag:'Reading · AI',cls:'c5'},
+    {key:'part5',ico:'📖',name:'Part 5 — Grammar',desc:'Từ loại, ngữ pháp, từ vựng. AI tạo đề và giải thích chi tiết. 120+ câu hỏi.',tag:'Reading · AI',cls:'c5'},
     {key:'part7',ico:'📑',name:'Part 7 — Reading',desc:'Đọc hiểu bài passage. Tư duy và mẹo làm bài từ chuyên gia ORI.',tag:'Reading',cls:'c6'},
     {key:'vocab',ico:'📚',name:'Từ Vựng TOEIC',desc:'Phân loại từ vựng theo band điểm 450-800+. Học đúng cấp độ.',tag:'Vocabulary',cls:'c7'},
-    {key:'quiz',ico:'🎯',name:'Quiz Tổng Hợp',desc:'Mini quiz kết hợp nhiều Part để kiểm tra kiến thức tổng quát.',tag:'Mixed',cls:'c1'},
-    {key:'recommend',ico:'🧭',name:'Gợi Ý Khóa Học',desc:'Nhập thông tin để ORI gợi ý khóa học và lộ trình phù hợp nhất.',tag:'Tư vấn',cls:'c2'}
+    {key:'recommend',ico:'🧭',name:'Gợi Ý Khóa Học',desc:'Trả lời vài câu hỏi để ORI gợi ý khóa học và lộ trình phù hợp. Học thử 2 buổi miễn phí!',tag:'Tư vấn',cls:'c2'}
   ];
 
-  var h = '<div class="dash"><div class="welcome-banner"><h3>👋 Chào mừng đến ORI Learning!</h3><p>Nền tảng học TOEIC toàn diện từ ORI Academy — Luyện Part 1-7, AI lập kế hoạch, Từ vựng theo band điểm.<br><strong>TOEIC · Việc Làm · Hay Dùng</strong> &nbsp;—&nbsp; <a href="https://zalo.me/0906303373" target="_blank" style="color:#fff;text-decoration:underline;font-weight:600">💬 Nhắn Zalo tư vấn miễn phí</a></p></div>';
-  h += '<div class="dash-head"><h2>🎓 Công Cụ Học Tập</h2><p>Chọn công cụ để bắt đầu luyện tập ngay</p></div>';
-  h += '<div class="dash-grid">';
-  cards.forEach(function(c){
-    h += '<div class="dash-card '+c.cls+'" onclick="go(\''+c.key+'\')">';
-    h += '<div class="dc-ico">'+c.ico+'</div>';
-    h += '<div class="dc-name">'+c.name+'</div>';
-    h += '<div class="dc-desc">'+c.desc+'</div>';
-    h += '<span class="dc-tag">'+c.tag+'</span>';
-    h += '</div>';
+  var h = '<div class="dash">';
+  
+  // Welcome Banner
+  h += '<div class="welcome-banner">';
+  h += '<h3>'+getGreeting()+' Chào mừng đến ORI Learning!</h3>';
+  h += '<p>Nền tảng học TOEIC toàn diện từ ORI Academy — Luyện Part 1-7, AI lập kế hoạch, Từ vựng theo band điểm.<br><strong>TOEIC · Việc Làm · Hay Dùng</strong></p>';
+  h += '<a class="wb-cta" href="https://zalo.me/0906303373" target="_blank">💬 Nhắn Zalo tư vấn miễn phí</a>';
+  h += '</div>';
+
+  // Stats
+  h += '<div class="stat-row">';
+  h += '<div class="stat-card"><div class="stat-val">8</div><div class="stat-lbl">Công cụ học tập</div></div>';
+  h += '<div class="stat-card"><div class="stat-val">Part 1-7</div><div class="stat-lbl">Luyện đầy đủ</div></div>';
+  h += '<div class="stat-card"><div class="stat-val">AI</div><div class="stat-lbl">Trí tuệ nhân tạo</div></div>';
+  h += '<div class="stat-card"><div class="stat-val">Free</div><div class="stat-lbl">Miễn phí 100%</div></div>';
+  h += '</div>';
+
+  // Recommended Section
+  h += '<div class="section-title">⭐ Bắt đầu từ đây</div>';
+  h += '<div class="dash-grid" style="margin-bottom:24px">';
+  [cards[0], cards[1]].forEach(function(c){
+    h += buildCard(c);
   });
-  h += '</div></div>';
+  h += '</div>';
+
+  // TOEIC Parts
+  h += '<div class="section-title">📝 Luyện TOEIC theo Part</div>';
+  h += '<div class="dash-grid" style="margin-bottom:24px">';
+  [cards[2], cards[3], cards[4], cards[5]].forEach(function(c){
+    h += buildCard(c);
+  });
+  h += '</div>';
+
+  // Tools
+  h += '<div class="section-title">🧰 Công cụ bổ trợ</div>';
+  h += '<div class="dash-grid">';
+  [cards[6], cards[7]].forEach(function(c){
+    h += buildCard(c);
+  });
+  h += '</div>';
+
+  h += '</div>';
   document.getElementById('main').innerHTML = h;
+
+  // Stagger animation
+  var allCards = document.querySelectorAll('.dash-card');
+  allCards.forEach(function(card, i){
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(15px)';
+    setTimeout(function(){
+      card.style.transition = 'all .35s cubic-bezier(.4,0,.2,1)';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 60 * i);
+  });
+}
+
+function buildCard(c){
+  var h = '<div class="dash-card '+c.cls+'" onclick="go(\''+c.key+'\')">';
+  h += '<div class="dc-ico">'+c.ico+'</div>';
+  h += '<div class="dc-name">'+c.name+'</div>';
+  h += '<div class="dc-desc">'+c.desc+'</div>';
+  h += '<span class="dc-tag">'+c.tag+'</span>';
+  h += '</div>';
+  return h;
 }
 
 // Init
