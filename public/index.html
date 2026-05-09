@@ -42,6 +42,8 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
 .sb-item .ico{font-size:16px;width:24px;text-align:center}
 .sb-item .badge{margin-left:auto;background:var(--accent);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700}
 .sb-item .badge-hot{margin-left:auto;background:var(--red);color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700}
+.sb-item .badge-soon{margin-left:auto;background:rgba(253,203,110,0.15);color:var(--orange);font-size:9px;padding:2px 6px;border-radius:10px;font-weight:600}
+.sb-item.disabled{opacity:.45;pointer-events:none}
 .sb-footer{padding:14px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);text-align:center}
 .sb-footer a{color:var(--accent2);text-decoration:none}
 
@@ -69,6 +71,20 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
 .iframe-loader.hidden{opacity:0;pointer-events:none}
 .loader-spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
 .loader-text{margin-top:14px;font-size:13px;color:var(--text2)}
+.open-newtab{margin-top:18px;display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s}
+.open-newtab:hover{background:#5b4bd5;transform:translateY(-2px)}
+.name-input{background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;font-family:inherit;font-size:13px;width:100%;max-width:280px;outline:none;transition:border .2s}
+.name-input:focus{border-color:var(--accent)}
+.name-input::placeholder{color:var(--text3)}
+.path-guide{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:24px}
+.path-guide h4{font-size:14px;font-weight:700;margin-bottom:10px}
+.path-steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.path-step{display:flex;align-items:center;gap:6px;padding:6px 12px;background:var(--accent-glow);border-radius:20px;font-size:11px;font-weight:600;color:var(--accent2);cursor:pointer;transition:all .15s}
+.path-step:hover{background:var(--accent);color:#fff}
+.path-arrow{color:var(--text3);font-size:14px}
+.coming-card{opacity:.5;cursor:default!important}
+.coming-card:hover{transform:none!important;border-color:var(--border)!important;box-shadow:none!important}
+.coming-badge{position:absolute;top:12px;right:12px;background:rgba(253,203,110,0.15);color:var(--orange);font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -133,6 +149,9 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
   .stat-row{grid-template-columns:repeat(2,1fr)}
   .tool-header{padding:0 10px}
   .tool-header .tool-name{font-size:12px}
+  .path-steps{flex-direction:column;align-items:stretch}
+  .path-step{justify-content:center}
+  .path-arrow{display:none}
 }
 </style>
 </head>
@@ -154,7 +173,9 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
     <div class="sb-section">Luyện TOEIC</div>
     <button class="sb-item" data-key="part1" onclick="go('part1')"><span class="ico">📸</span> Part 1 — Photographs</button>
     <button class="sb-item" data-key="part2" onclick="go('part2')"><span class="ico">🎧</span> Part 2 — Q&A</button>
+    <button class="sb-item disabled"><span class="ico">💬</span> Part 3/4 — Conversations<span class="badge-soon">Soon</span></button>
     <button class="sb-item" data-key="part5" onclick="go('part5')"><span class="ico">📖</span> Part 5 — Grammar<span class="badge-hot">🔥</span></button>
+    <button class="sb-item disabled"><span class="ico">📄</span> Part 6 — Text Completion<span class="badge-soon">Soon</span></button>
     <button class="sb-item" data-key="part7" onclick="go('part7')"><span class="ico">📑</span> Part 7 — Reading</button>
 
     <div class="sb-section">Công cụ</div>
@@ -221,21 +242,33 @@ function go(page){
   h += '<button class="back-btn" onclick="go(\'home\')">← Trang chủ</button>';
   h += '<span class="tool-name">'+tool.name+'</span>';
   h += '<span class="tool-badge">'+tool.tag+'</span>';
+  h += '<a href="'+tool.url+'" target="_blank" style="margin-left:auto;color:var(--text3);font-size:11px;text-decoration:none" title="Mở trong tab mới">↗ Tab mới</a>';
   h += '</div>';
   h += '<div class="iframe-wrap">';
   h += '<div class="iframe-loader" id="iframe-loader">';
   h += '<div class="loader-spinner"></div>';
   h += '<div class="loader-text">Đang tải '+tool.name+'...</div>';
+  h += '<a class="open-newtab" href="'+tool.url+'" target="_blank" style="display:none" id="fallback-link">🔗 Mở trực tiếp trong tab mới</a>';
   h += '</div>';
   h += '<iframe src="'+tool.url+'" allow="microphone; clipboard-write" id="tool-iframe" onload="onIframeLoad()" onerror="onIframeError()"></iframe>';
   h += '</div>';
   document.getElementById('main').innerHTML = h;
 
-  // Timeout fallback — hide loader after 8s even if onload doesn't fire
+  // After 6s, if still loading show fallback link
+  setTimeout(function(){
+    var loader = document.getElementById('iframe-loader');
+    var fb = document.getElementById('fallback-link');
+    if(loader && !loader.classList.contains('hidden')){
+      if(fb) fb.style.display = 'inline-flex';
+      var lt = document.querySelector('.loader-text');
+      if(lt) lt.textContent = 'Tải chậm? Thử mở trực tiếp:';
+    }
+  }, 6000);
+  // Hard timeout — hide loader after 10s
   setTimeout(function(){
     var loader = document.getElementById('iframe-loader');
     if(loader) loader.classList.add('hidden');
-  }, 8000);
+  }, 10000);
 }
 
 function onIframeLoad(){
@@ -251,39 +284,60 @@ function onIframeError(){
 
 function getGreeting(){
   var h = new Date().getHours();
-  if(h < 12) return '🌅 Chào buổi sáng!';
-  if(h < 18) return '☀️ Chào buổi chiều!';
-  return '🌙 Chào buổi tối!';
+  var name = localStorage.getItem('ori_name') || '';
+  var hi = name ? ' '+name+'!' : '';
+  if(h < 12) return '🌅 Chào buổi sáng'+hi;
+  if(h < 18) return '☀️ Chào buổi chiều'+hi;
+  return '🌙 Chào buổi tối'+hi;
 }
+function saveName(el){ localStorage.setItem('ori_name', el.value.trim()); }
 
 function renderDashboard(){
   var cards = [
-    {key:'planner',ico:'🤖',name:'AI Study Planner',desc:'AI lập kế hoạch học tập TOEIC cá nhân hóa theo điểm số và mục tiêu. Theo dõi tiến độ hàng ngày.',tag:'Trí tuệ nhân tạo',cls:'c1'},
-    {key:'placement',ico:'📝',name:'Test Đầu Vào',desc:'Kiểm tra trình độ hiện tại để ORI tư vấn khóa học phù hợp nhất. Miễn phí 100%.',tag:'Miễn phí',cls:'c2'},
-    {key:'part1',ico:'📸',name:'Part 1 — Photographs',desc:'Luyện mô tả hình ảnh với 6 câu/đề. Nghe audio và chọn câu đúng.',tag:'Listening',cls:'c3'},
-    {key:'part2',ico:'🎧',name:'Part 2 — Q&A',desc:'Luyện nghe câu hỏi-đáp. Phản xạ nhanh với 25 câu mỗi bộ đề.',tag:'Listening',cls:'c4'},
-    {key:'part5',ico:'📖',name:'Part 5 — Grammar',desc:'Từ loại, ngữ pháp, từ vựng. AI tạo đề và giải thích chi tiết. 120+ câu hỏi.',tag:'Reading · AI',cls:'c5'},
-    {key:'part7',ico:'📑',name:'Part 7 — Reading',desc:'Đọc hiểu bài passage. Tư duy và mẹo làm bài từ chuyên gia ORI.',tag:'Reading',cls:'c6'},
-    {key:'vocab',ico:'📚',name:'Từ Vựng TOEIC',desc:'Phân loại từ vựng theo band điểm 450-800+. Học đúng cấp độ.',tag:'Vocabulary',cls:'c7'},
-    {key:'recommend',ico:'🧭',name:'Gợi Ý Khóa Học',desc:'Trả lời vài câu hỏi để ORI gợi ý khóa học và lộ trình phù hợp. Học thử 2 buổi miễn phí!',tag:'Tư vấn',cls:'c2'}
+    {key:'planner',ico:'🤖',name:'AI Study Planner',desc:'AI lên lộ trình riêng cho bạn — biết yếu Part nào, tập Part đó. Có theo dõi tiến độ hàng ngày.',tag:'Trí tuệ nhân tạo',cls:'c1'},
+    {key:'placement',ico:'📝',name:'Test Đầu Vào',desc:'Làm 20 câu nhanh để ORI biết bạn đang ở level nào → tư vấn đúng khóa. Miễn phí 100%.',tag:'Miễn phí',cls:'c2'},
+    {key:'part1',ico:'📸',name:'Part 1 — Photographs',desc:'Nghe mô tả ảnh, chọn câu đúng. Luyện phản xạ nghe — chỉ cần 5 phút/ngày.',tag:'Listening',cls:'c3'},
+    {key:'part2',ico:'🎧',name:'Part 2 — Q&A',desc:'Câu hỏi-đáp nhanh — loại bỏ bẫy, tập trung từ khóa. 25 câu/bộ đề thực chiến.',tag:'Listening',cls:'c4'},
+    {key:'part5',ico:'📖',name:'Part 5 — Grammar',desc:'Bài tập từ loại, ngữ pháp, từ vựng — AI giải thích chi tiết từng câu. 120+ câu hỏi.',tag:'Reading · AI',cls:'c5'},
+    {key:'part7',ico:'📑',name:'Part 7 — Reading',desc:'Đọc passage + trả lời — học tư duy scan/skim từ chuyên gia ORI. Mẹo tiết kiệm thời gian.',tag:'Reading',cls:'c6'},
+    {key:'vocab',ico:'📚',name:'Từ Vựng TOEIC',desc:'600 từ chia theo band 450→800+. Học đúng level, không học thừa không học thiếu.',tag:'Vocabulary',cls:'c7'},
+    {key:'recommend',ico:'🧭',name:'Gợi Ý Khóa Học',desc:'Chưa biết học gì? Trả lời 5 câu → ORI gợi ý khóa + lộ trình. Học thử 2 buổi miễn phí!',tag:'Tư vấn',cls:'c2'}
   ];
 
   var h = '<div class="dash">';
   
   // Welcome Banner
+  var savedName = localStorage.getItem('ori_name') || '';
   h += '<div class="welcome-banner">';
   h += '<h3>'+getGreeting()+' Chào mừng đến ORI Learning!</h3>';
   h += '<p>Nền tảng học TOEIC toàn diện từ ORI Academy — Luyện Part 1-7, AI lập kế hoạch, Từ vựng theo band điểm.<br><strong>TOEIC · Việc Làm · Hay Dùng</strong></p>';
-  h += '<a class="wb-cta" href="https://zalo.me/0906303373" target="_blank">💬 Nhắn Zalo tư vấn miễn phí</a>';
-  h += '</div>';
+  h += '<div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap">';
+  h += '<input class="name-input" placeholder="👋 Nhập tên bạn để ORI gọi nhé..." value="'+savedName+'" onchange="saveName(this)" style="max-width:220px">';
+  h += '<a class="wb-cta" href="https://zalo.me/0906303373" target="_blank" style="margin:0">💬 Nhắn Zalo tư vấn</a>';
+  h += '</div></div>';
 
   // Stats
   h += '<div class="stat-row">';
-  h += '<div class="stat-card"><div class="stat-val">8</div><div class="stat-lbl">Công cụ học tập</div></div>';
-  h += '<div class="stat-card"><div class="stat-val">Part 1-7</div><div class="stat-lbl">Luyện đầy đủ</div></div>';
-  h += '<div class="stat-card"><div class="stat-val">AI</div><div class="stat-lbl">Trí tuệ nhân tạo</div></div>';
-  h += '<div class="stat-card"><div class="stat-val">Free</div><div class="stat-lbl">Miễn phí 100%</div></div>';
+  h += '<div class="stat-card"><div class="stat-val">8</div><div class="stat-lbl">Công cụ miễn phí</div></div>';
+  h += '<div class="stat-card"><div class="stat-val">Part 1-7</div><div class="stat-lbl">Đầy đủ 7 Part</div></div>';
+  h += '<div class="stat-card"><div class="stat-val">AI</div><div class="stat-lbl">Tạo đề thông minh</div></div>';
+  h += '<div class="stat-card"><div class="stat-val">Free</div><div class="stat-lbl">Không mất phí</div></div>';
   h += '</div>';
+
+  // Learning Path Guide
+  h += '<div class="path-guide">';
+  h += '<h4>🗺️ Lộ trình gợi ý cho người mới</h4>';
+  h += '<div class="path-steps">';
+  h += '<span class="path-step" onclick="go(\'placement\')">📝 Test Đầu Vào</span>';
+  h += '<span class="path-arrow">→</span>';
+  h += '<span class="path-step" onclick="go(\'planner\')">🤖 AI Lên Lộ Trình</span>';
+  h += '<span class="path-arrow">→</span>';
+  h += '<span class="path-step" onclick="go(\'part5\')">📖 Luyện Part 5</span>';
+  h += '<span class="path-arrow">→</span>';
+  h += '<span class="path-step" onclick="go(\'part1\')">📸 Luyện Part 1</span>';
+  h += '<span class="path-arrow">→</span>';
+  h += '<span class="path-step" onclick="go(\'vocab\')">📚 Từ Vựng</span>';
+  h += '</div></div>';
 
   // Recommended Section
   h += '<div class="section-title">⭐ Bắt đầu từ đây</div>';
@@ -296,9 +350,13 @@ function renderDashboard(){
   // TOEIC Parts
   h += '<div class="section-title">📝 Luyện TOEIC theo Part</div>';
   h += '<div class="dash-grid" style="margin-bottom:24px">';
-  [cards[2], cards[3], cards[4], cards[5]].forEach(function(c){
-    h += buildCard(c);
-  });
+  [cards[2], cards[3]].forEach(function(c){ h += buildCard(c); });
+  // Part 3/4 coming soon
+  h += '<div class="dash-card c4 coming-card"><span class="coming-badge">🔜 Sắp ra mắt</span><div class="dc-ico">💬</div><div class="dc-name">Part 3/4 — Conversations</div><div class="dc-desc">Hội thoại ngắn + dài. Luyện nghe hiểu context — đang phát triển.</div><span class="dc-tag">Listening</span></div>';
+  [cards[4]].forEach(function(c){ h += buildCard(c); });
+  // Part 6 coming soon
+  h += '<div class="dash-card c5 coming-card"><span class="coming-badge">🔜 Sắp ra mắt</span><div class="dc-ico">📄</div><div class="dc-name">Part 6 — Text Completion</div><div class="dc-desc">Điền từ vào đoạn văn — ngữ pháp + từ vựng trong ngữ cảnh.</div><span class="dc-tag">Reading</span></div>';
+  [cards[5]].forEach(function(c){ h += buildCard(c); });
   h += '</div>';
 
   // Tools
