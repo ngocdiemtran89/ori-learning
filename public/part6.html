@@ -70,6 +70,9 @@
   .result-card { display: none; margin-top: 20px; background: var(--bb-green-light); border: 1px solid var(--bb-green); border-radius: var(--radius); padding: 20px; text-align: center; }
   .result-score { font-size: 32px; font-weight: 800; color: var(--bb-green); margin-bottom: 4px; }
   .result-text { font-size: 14px; color: #15803d; font-weight: 600; }
+  
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
 </style>
 </head>
 <body>
@@ -105,6 +108,78 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Grammar Tips Accordion / Section -->
+  <div class="card" style="grid-column: 1 / -1; margin-bottom: 4px;">
+    <details style="background: var(--card);">
+      <summary style="padding: 16px 24px; font-weight: 700; font-size: 15px; color: var(--bb-blue); cursor: pointer; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border);">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:20px;">📘</span> <span>Cẩm Nang Ngữ Pháp & Mẹo Chuyên Sâu Part 6</span>
+        </div>
+        <span style="font-size:12px; color: var(--text-light); background: var(--bg); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border);">Mở rộng ▼</span>
+      </summary>
+      
+      <div style="padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; background: #fafafa;">
+        
+        <!-- Tip 1 -->
+        <div style="border: 1px solid var(--border); border-radius: 8px; padding: 16px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 12px;">
+            <div style="width:28px; height:28px; border-radius:6px; background:var(--bb-green-light); color:var(--bb-green); display:flex; align-items:center; justify-content:center; font-weight:800;">1</div>
+            <strong style="color:var(--bb-blue); font-size:14px;">Thì Động Từ Ẩn (Contextual Tense)</strong>
+          </div>
+          <p style="font-size:13px; color:var(--text); margin-bottom:10px;">Dấu hiệu thời gian không nằm ngay trong ô trống mà bị chi phối bởi <strong>câu liền trước</strong>. Phải đọc trọn vẹn dòng thời gian của cả đoạn.</p>
+          <div style="background:var(--bg); padding:10px; border-radius:6px; font-size:13px; border-left:3px solid #f59e0b;">
+            <em style="color:#475569;">"The CEO approved the budget yesterday. The marketing team <strong>[will launch]</strong> the campaign next week."</em><br>
+            <span style="color:#ef4444; font-size:11px; margin-top:4px; display:block;">⚠ Bẫy: Đọc lướt sẽ dễ nhầm quá khứ do chữ "yesterday" ở câu đầu.</span>
+          </div>
+        </div>
+
+        <!-- Tip 2 -->
+        <div style="border: 1px solid var(--border); border-radius: 8px; padding: 16px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 12px;">
+            <div style="width:28px; height:28px; border-radius:6px; background:var(--bb-green-light); color:var(--bb-green); display:flex; align-items:center; justify-content:center; font-weight:800;">2</div>
+            <strong style="color:var(--bb-blue); font-size:14px;">Trạng Từ Liên Kết (Transitions)</strong>
+          </div>
+          <p style="font-size:13px; color:var(--text); margin-bottom:10px;">Kiểm tra độ "mượt" của luồng logic 2 câu sát nhau. Dịch sai từ nối là sập bẫy.</p>
+          <ul style="font-size:12px; color:#475569; margin-left:18px; margin-bottom:10px; line-height: 1.6;">
+            <li><strong>Nguyên nhân - Kết quả:</strong> Therefore, Consequently.</li>
+            <li><strong>Tương phản:</strong> However, Nevertheless.</li>
+            <li><strong>Bổ sung:</strong> Moreover, Furthermore, In addition.</li>
+          </ul>
+          <div style="background:var(--bg); padding:10px; border-radius:6px; font-size:13px; border-left:3px solid #f59e0b;">
+            <em style="color:#475569;">"The factory faced a power outage. <strong>[As a result]</strong>, production was halted for two hours."</em>
+          </div>
+        </div>
+
+        <!-- Tip 3 -->
+        <div style="border: 1px solid var(--border); border-radius: 8px; padding: 16px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 12px;">
+            <div style="width:28px; height:28px; border-radius:6px; background:var(--bb-green-light); color:var(--bb-green); display:flex; align-items:center; justify-content:center; font-weight:800;">3</div>
+            <strong style="color:var(--bb-blue); font-size:14px;">Từ Vựng Cố Định (Collocations)</strong>
+          </div>
+          <p style="font-size:13px; color:var(--text); margin-bottom:10px;">Part 6 chuyên trị đánh đố bằng 4 từ có nghĩa tiếng Việt giống hệt nhau. Giải pháp: Phân biệt bằng từ ghép cố định.</p>
+          <div style="background:var(--bg); padding:10px; border-radius:6px; font-size:13px; border-left:3px solid #f59e0b;">
+            <em style="color:#475569;">"To <strong>[place]</strong> an order, please visit our website."</em><br>
+            <span style="color:#ef4444; font-size:11px; margin-top:4px; display:block;">⚠ Bẫy: Tiếng Việt dịch là "đặt hàng", nhưng tiếng Anh không dùng "make an order" hay "put an order".</span>
+          </div>
+        </div>
+
+        <!-- Tip 4 -->
+        <div style="border: 1px solid var(--border); border-radius: 8px; padding: 16px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom: 12px;">
+            <div style="width:28px; height:28px; border-radius:6px; background:var(--bb-green-light); color:var(--bb-green); display:flex; align-items:center; justify-content:center; font-weight:800;">4</div>
+            <strong style="color:var(--bb-blue); font-size:14px;">Đại Từ Chỉ Định (Demonstrative)</strong>
+          </div>
+          <p style="font-size:13px; color:var(--text); margin-bottom:10px;">Chìa khóa vàng cho dạng Điền Nguyên Câu. Thấy <em>This/That/These/Those/Such</em> ở đáp án, lùng ngay danh từ gốc ở câu liền trước.</p>
+          <div style="background:var(--bg); padding:10px; border-radius:6px; font-size:13px; border-left:3px solid #f59e0b;">
+            <em style="color:#475569;">"We are installing a new security system. <strong>[This upgrade]</strong> will require a temporary shutdown."</em><br>
+            <span style="color:#ef4444; font-size:11px; margin-top:4px; display:block;">⚠ "This upgrade" chính là sợi dây liên kết trỏ thẳng về "new security system".</span>
+          </div>
+        </div>
+
+      </div>
+    </details>
   </div>
 
   <!-- Left: Passage -->
