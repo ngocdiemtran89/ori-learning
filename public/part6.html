@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 6 — Text Completion (Bamboo Airways Theme)</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bb-green: #41A045;
+    --bb-green-light: #eaf5eb;
+    --bb-blue: #00488F;
+    --bb-blue-light: #e5edf5;
+    --bg: #f4f6f8;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --radius: 12px;
+    --shadow: 0 4px 20px rgba(0, 72, 143, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Be Vietnam Pro', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  
+  header { background: var(--card); border-bottom: 2px solid var(--bb-green); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon { width: 36px; height: 36px; background: var(--bb-blue); border-radius: 8px 8px 8px 0; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 18px; }
+  .logo-text { font-size: 18px; font-weight: 800; color: var(--bb-blue); letter-spacing: 0.5px; }
+  .logo-text span { color: var(--bb-green); }
+  
+  .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 400px; gap: 24px; }
+  @media(max-width: 800px) { .container { grid-template-columns: 1fr; } }
+  
+  .card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+  .card-header { background: var(--bb-blue); color: #fff; padding: 14px 20px; font-weight: 700; font-size: 15px; display: flex; justify-content: space-between; align-items: center; }
+  .card-header.green { background: var(--bb-green); }
+  .card-body { padding: 24px; }
+  
+  .passage { font-size: 15px; line-height: 1.8; color: #334155; }
+  .passage-header { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px dashed var(--border); font-size: 14px; }
+  .passage-header strong { color: var(--bb-blue); }
+  .blank { display: inline-flex; align-items: center; justify-content: center; min-width: 100px; height: 28px; border-bottom: 2px solid var(--bb-green); font-weight: 700; color: var(--bb-blue); padding: 0 10px; background: var(--bb-green-light); border-radius: 4px 4px 0 0; margin: 0 4px; }
+  
+  .question { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .question:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .q-num { font-weight: 800; color: var(--bb-blue); font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .q-num::before { content: ''; width: 4px; height: 16px; background: var(--bb-green); border-radius: 2px; }
+  
+  .options { display: grid; gap: 8px; }
+  .option { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 14px; background: #fff; color: var(--text); }
+  .option:hover { border-color: var(--bb-blue); background: var(--bb-blue-light); }
+  .option input { display: none; }
+  .opt-letter { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--text-light); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--text-light); transition: all 0.2s; }
+  
+  .option.selected { border-color: var(--bb-blue); background: var(--bb-blue-light); box-shadow: 0 0 0 1px var(--bb-blue); }
+  .option.selected .opt-letter { border-color: var(--bb-blue); background: var(--bb-blue); color: #fff; }
+  
+  .option.correct { border-color: var(--bb-green); background: var(--bb-green-light); box-shadow: 0 0 0 1px var(--bb-green); }
+  .option.correct .opt-letter { border-color: var(--bb-green); background: var(--bb-green); color: #fff; }
+  
+  .option.wrong { border-color: #ef4444; background: #fef2f2; box-shadow: 0 0 0 1px #ef4444; }
+  .option.wrong .opt-letter { border-color: #ef4444; background: #ef4444; color: #fff; }
+  
+  .explain-box { margin-top: 12px; background: #f8fafc; border-left: 3px solid var(--bb-green); padding: 12px 16px; font-size: 13px; color: #475569; display: none; border-radius: 0 8px 8px 0; }
+  
+  .btn-submit { width: 100%; background: var(--bb-blue); color: #fff; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; transition: all 0.2s; margin-top: 20px; box-shadow: 0 4px 12px rgba(0, 72, 143, 0.2); }
+  .btn-submit:hover { background: #00366b; transform: translateY(-2px); }
+  .btn-submit:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; box-shadow: none; }
+  
+  .result-card { display: none; margin-top: 20px; background: var(--bb-green-light); border: 1px solid var(--bb-green); border-radius: var(--radius); padding: 20px; text-align: center; }
+  .result-score { font-size: 32px; font-weight: 800; color: var(--bb-green); margin-bottom: 4px; }
+  .result-text { font-size: 14px; color: #15803d; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">O</div>
+    <div class="logo-text">ORI <span>Learning</span></div>
+  </div>
+  <div style="font-size:14px; font-weight:600; color:var(--text-light)">Part 6: Text Completion</div>
+</header>
+
+<div class="container">
+  <!-- Left: Passage -->
+  <div class="card">
+    <div class="card-header">
+      <span>Đoạn văn (Questions 131 - 134)</span>
+      <span style="font-size:12px; background:rgba(255,255,255,0.2); padding:3px 10px; border-radius:20px;">Aviation / Travel</span>
+    </div>
+    <div class="card-body passage">
+      <div class="passage-header">
+        <strong>To:</strong> All Cabin Crew Members<br>
+        <strong>From:</strong> Flight Operations Department<br>
+        <strong>Date:</strong> October 15<br>
+        <strong>Subject:</strong> Updated Uniform Guidelines
+      </div>
+      <p>Dear Crew Members,</p><br>
+      <p>We would like to inform you that the updated uniform policy will go into effect starting November 1. Please ensure that you have reviewed the attached document, which details the changes to our dress code. <span class="blank" id="b131">131</span>.</p>
+      <br>
+      <p>As part of this update, all flight attendants are <span class="blank" id="b132">132</span> to wear the new name badges provided last week. If you have not yet received your badge, please contact the HR department immediately. Failing to comply with the new guidelines may result in disciplinary <span class="blank" id="b133">133</span>.</p>
+      <br>
+      <p>We appreciate your dedication to maintaining the professional image of Bamboo Airways. <span class="blank" id="b134">134</span></p>
+      <br>
+      <p>Best regards,</p>
+      <p>Flight Operations Team</p>
+    </div>
+  </div>
+  
+  <!-- Right: Questions -->
+  <div class="card">
+    <div class="card-header green">
+      <span>Câu hỏi</span>
+    </div>
+    <div class="card-body" id="questions-container">
+      
+      <!-- Q131 -->
+      <div class="question" id="q131">
+        <div class="q-num">131.</div>
+        <div class="options">
+          <label class="option"><div class="opt-letter">A</div><span>The new uniforms will be distributed tomorrow.</span><input type="radio" name="q131" value="A"></label>
+          <label class="option"><div class="opt-letter">B</div><span>This document outlines the acceptable accessories.</span><input type="radio" name="q131" value="B"></label>
+          <label class="option"><div class="opt-letter">C</div><span>We are hiring more cabin crew next month.</span><input type="radio" name="q131" value="C"></label>
+          <label class="option"><div class="opt-letter">D</div><span>Please submit your time-off requests soon.</span><input type="radio" name="q131" value="D"></label>
+        </div>
+        <div class="explain-box"><strong>Giải thích:</strong> Chỗ trống cần điền một câu (Sentence Insertion). Câu trước nhắc đến "the attached document" (tài liệu đính kèm). Do đó, câu (B) với từ khóa "This document" là sự liên kết ngữ cảnh (Cohesion) hoàn hảo.</div>
+      </div>
+
+      <!-- Q132 -->
+      <div class="question" id="q132">
+        <div class="q-num">132.</div>
+        <div class="options">
+          <label class="option"><div class="opt-letter">A</div><span>require</span><input type="radio" name="q132" value="A"></label>
+          <label class="option"><div class="opt-letter">B</div><span>requires</span><input type="radio" name="q132" value="B"></label>
+          <label class="option"><div class="opt-letter">C</div><span>requiring</span><input type="radio" name="q132" value="C"></label>
+          <label class="option"><div class="opt-letter">D</div><span>required</span><input type="radio" name="q132" value="D"></label>
+        </div>
+        <div class="explain-box"><strong>Giải thích:</strong> Cấu trúc bị động: "be required to do sth" (được yêu cầu làm gì). Trạng thái bị động "are required to wear" mang ý nghĩa yêu cầu.</div>
+      </div>
+      
+      <!-- Q133 -->
+      <div class="question" id="q133">
+        <div class="q-num">133.</div>
+        <div class="options">
+          <label class="option"><div class="opt-letter">A</div><span>action</span><input type="radio" name="q133" value="A"></label>
+          <label class="option"><div class="opt-letter">B</div><span>schedule</span><input type="radio" name="q133" value="B"></label>
+          <label class="option"><div class="opt-letter">C</div><span>allowance</span><input type="radio" name="q133" value="C"></label>
+          <label class="option"><div class="opt-letter">D</div><span>performance</span><input type="radio" name="q133" value="D"></label>
+        </div>
+        <div class="explain-box"><strong>Giải thích:</strong> Collocation: "disciplinary action" (biện pháp kỷ luật). Câu mang nghĩa: Việc không tuân thủ có thể dẫn đến biện pháp kỷ luật.</div>
+      </div>
+
+      <!-- Q134 -->
+      <div class="question" id="q134">
+        <div class="q-num">134.</div>
+        <div class="options">
+          <label class="option"><div class="opt-letter">A</div><span>We hope you enjoy your flight.</span><input type="radio" name="q134" value="A"></label>
+          <label class="option"><div class="opt-letter">B</div><span>Thank you for your cooperation.</span><input type="radio" name="q134" value="B"></label>
+          <label class="option"><div class="opt-letter">C</div><span>The training session will begin shortly.</span><input type="radio" name="q134" value="C"></label>
+          <label class="option"><div class="opt-letter">D</div><span>Please keep your seatbelts fastened.</span><input type="radio" name="q134" value="D"></label>
+        </div>
+        <div class="explain-box"><strong>Giải thích:</strong> Đoạn kết. Bức thư yêu cầu nhân viên tuân thủ hướng dẫn đồng phục mới của hãng hàng không thường kết thúc bằng lời cảm ơn sự hợp tác: "Thank you for your cooperation."</div>
+      </div>
+
+      <button class="btn-submit" id="btn-submit">Chấm Điểm</button>
+      
+      <div class="result-card" id="result-card">
+        <div class="result-score" id="result-score">0/4</div>
+        <div class="result-text" id="result-text"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const answers = { q131: 'B', q132: 'D', q133: 'A', q134: 'B' };
+  
+  // Selection logic
+  document.querySelectorAll('.option').forEach(opt => {
+    opt.addEventListener('click', function() {
+      const qBox = this.closest('.question');
+      if (qBox.classList.contains('submitted')) return; // prevent change after submit
+      
+      qBox.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      this.classList.add('selected');
+      this.querySelector('input').checked = true;
+      
+      // Update blank in passage
+      const qId = qBox.id; // e.g. q131
+      const blankId = 'b' + qId.substring(1);
+      const blankEl = document.getElementById(blankId);
+      if(blankEl) {
+        blankEl.textContent = this.querySelector('span').textContent;
+        blankEl.style.color = 'var(--bb-blue)';
+        blankEl.style.fontWeight = '700';
+        blankEl.style.background = 'transparent';
+        blankEl.style.borderBottomStyle = 'dashed';
+      }
+    });
+  });
+
+  // Submit logic
+  document.getElementById('btn-submit').addEventListener('click', function() {
+    let score = 0;
+    
+    Object.keys(answers).forEach(q => {
+      const qBox = document.getElementById(q);
+      qBox.classList.add('submitted'); // lock inputs
+      
+      const selected = qBox.querySelector('input:checked');
+      if (selected) {
+        if (selected.value === answers[q]) {
+          score++;
+          selected.parentElement.classList.add('correct');
+        } else {
+          selected.parentElement.classList.add('wrong');
+          // highlight correct one
+          qBox.querySelector(`input[value="${answers[q]}"]`).parentElement.classList.add('correct');
+        }
+      } else {
+        // none selected
+        qBox.querySelector(`input[value="${answers[q]}"]`).parentElement.classList.add('correct');
+      }
+      
+      // Show explanation
+      qBox.querySelector('.explain-box').style.display = 'block';
+    });
+
+    // Update Result
+    document.getElementById('result-score').textContent = `${score}/4`;
+    let txt = score === 4 ? 'Tuyệt vời! Bạn là Master Part 6.' : 
+              score >= 2 ? 'Khá tốt! Hãy đọc kỹ giải thích để tiến bộ.' : 
+              'Cần cố gắng hơn! Luyện tập nhiều nhé.';
+    document.getElementById('result-text').textContent = txt;
+    document.getElementById('result-card').style.display = 'block';
+    
+    this.style.display = 'none'; // hide submit button
+  });
+</script>
+</body>
+</html>

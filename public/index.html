@@ -175,7 +175,7 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
     <button class="sb-item" data-key="part2" onclick="go('part2')"><span class="ico">🎧</span> Part 2 — Q&A</button>
     <button class="sb-item disabled"><span class="ico">💬</span> Part 3/4 — Conversations<span class="badge-soon">Soon</span></button>
     <button class="sb-item" data-key="part5" onclick="go('part5')"><span class="ico">📖</span> Part 5 — Grammar<span class="badge-hot">🔥</span></button>
-    <button class="sb-item disabled"><span class="ico">📄</span> Part 6 — Text Completion<span class="badge-soon">Soon</span></button>
+    <button class="sb-item" data-key="part6" onclick="go('part6')"><span class="ico">📄</span> Part 6 — Text Completion<span class="badge-hot">New</span></button>
     <button class="sb-item" data-key="part7" onclick="go('part7')"><span class="ico">📑</span> Part 7 — Reading</button>
 
     <div class="sb-section">Công cụ</div>
@@ -206,6 +206,7 @@ var TOOLS = {
   part1:     {url:'https://ori-toeic-part1.vercel.app', name:'Part 1 — Photographs', tag:'Listening'},
   part2:     {url:'https://toeic-part2-app.vercel.app', name:'Part 2 — Q&A', tag:'Listening'},
   part5:     {url:'https://ori-part5-grammar.vercel.app', name:'Part 5 — Grammar', tag:'Reading · AI'},
+  part6:     {url:'/part6.html', name:'Part 6 — Text Completion', tag:'Reading'},
   part7:     {url:'https://part-7-toeic-ori.vercel.app', name:'Part 7 — Reading', tag:'Reading'},
   vocab:     {url:'https://ori-toeic-vocab.vercel.app', name:'Từ Vựng TOEIC', tag:'Vocabulary'},
   quiz:      {url:'https://ori-toeic-cabin-crew-quiz.vercel.app', name:'Quiz Aviation TOEIC', tag:'Test Bank'},
@@ -357,8 +358,8 @@ function renderDashboard(){
   // Part 3/4 coming soon
   h += '<div class="dash-card c4 coming-card"><span class="coming-badge">🔜 Sắp ra mắt</span><div class="dc-ico">💬</div><div class="dc-name">Part 3/4 — Conversations</div><div class="dc-desc">Hội thoại ngắn + dài. Luyện nghe hiểu context — đang phát triển.</div><span class="dc-tag">Listening</span></div>';
   [cards[4]].forEach(function(c){ h += buildCard(c); });
-  // Part 6 coming soon
-  h += '<div class="dash-card c5 coming-card"><span class="coming-badge">🔜 Sắp ra mắt</span><div class="dc-ico">📄</div><div class="dc-name">Part 6 — Text Completion</div><div class="dc-desc">Điền từ vào đoạn văn — ngữ pháp + từ vựng trong ngữ cảnh.</div><span class="dc-tag">Reading</span></div>';
+  // Part 6
+  h += '<div class="dash-card c5" onclick="go(\'part6\')"><div class="dc-ico">📄</div><div class="dc-name">Part 6 — Text Completion</div><div class="dc-desc">Điền từ vào đoạn văn (Theme Bamboo Airways). Ngữ pháp + Từ vựng + Sentence Insertion.</div><span class="dc-tag">Reading</span></div>';
   [cards[5]].forEach(function(c){ h += buildCard(c); });
   h += '</div>';
 
