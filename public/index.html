@@ -173,7 +173,7 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
     <div class="sb-section">Luyện TOEIC</div>
     <button class="sb-item" data-key="part1" onclick="go('part1')"><span class="ico">📸</span> Part 1 — Photographs</button>
     <button class="sb-item" data-key="part2" onclick="go('part2')"><span class="ico">🎧</span> Part 2 — Q&A</button>
-    <button class="sb-item disabled"><span class="ico">💬</span> Part 3/4 — Conversations<span class="badge-soon">Soon</span></button>
+    <button class="sb-item" onclick="window.location.href='part34/index.html'"><span class="ico">💬</span> Part 3/4 — Conversations</button>
     <button class="sb-item" data-key="part5" onclick="go('part5')"><span class="ico">📖</span> Part 5 — Grammar<span class="badge-hot">🔥</span></button>
     <button class="sb-item" data-key="part6" onclick="go('part6')"><span class="ico">📄</span> Part 6 — Text Completion<span class="badge-hot">New</span></button>
     <button class="sb-item" data-key="part7" onclick="go('part7')"><span class="ico">📑</span> Part 7 — Reading</button>
@@ -355,8 +355,8 @@ function renderDashboard(){
   h += '<div class="section-title">📝 Luyện TOEIC theo Part</div>';
   h += '<div class="dash-grid" style="margin-bottom:24px">';
   [cards[2], cards[3]].forEach(function(c){ h += buildCard(c); });
-  // Part 3/4 coming soon
-  h += '<div class="dash-card c4 coming-card"><span class="coming-badge">🔜 Sắp ra mắt</span><div class="dc-ico">💬</div><div class="dc-name">Part 3/4 — Conversations</div><div class="dc-desc">Hội thoại ngắn + dài. Luyện nghe hiểu context — đang phát triển.</div><span class="dc-tag">Listening</span></div>';
+  // Part 3/4 active
+  h += '<div class="dash-card c4" onclick="window.location.href=\\\'part34/index.html\\\'"><div class="dc-ico">💬</div><div class="dc-name">Part 3/4 — Conversations</div><div class="dc-desc">Hội thoại ngắn + dài. Luyện kỹ năng Visualizing Context và Deep Debugging.</div><span class="dc-tag">Listening</span></div>';
   [cards[4]].forEach(function(c){ h += buildCard(c); });
   // Part 6
   h += '<div class="dash-card c5" onclick="go(\'part6\')"><div class="dc-ico">📄</div><div class="dc-name">Part 6 — Text Completion</div><div class="dc-desc">Điền từ vào đoạn văn (Theme Bamboo Airways). Ngữ pháp + Từ vựng + Sentence Insertion.</div><span class="dc-tag">Reading</span></div>';
