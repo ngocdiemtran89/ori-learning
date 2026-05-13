@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 6 — Text Completion (Bamboo Airways Theme)</title>
+<title>Part 6 — Text Completion (Full Test)</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -39,7 +39,7 @@
   .passage { font-size: 15px; line-height: 1.8; color: #334155; }
   .passage-header { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px dashed var(--border); font-size: 14px; }
   .passage-header strong { color: var(--bb-blue); }
-  .blank { display: inline-flex; align-items: center; justify-content: center; min-width: 100px; height: 28px; border-bottom: 2px solid var(--bb-green); font-weight: 700; color: var(--bb-blue); padding: 0 10px; background: var(--bb-green-light); border-radius: 4px 4px 0 0; margin: 0 4px; }
+  .blank { display: inline-flex; align-items: center; justify-content: center; min-width: 100px; height: 28px; border-bottom: 2px solid var(--bb-green); font-weight: 700; color: var(--bb-blue); padding: 0 10px; background: var(--bb-green-light); border-radius: 4px 4px 0 0; margin: 0 4px; transition: all 0.2s;}
   
   .question { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .question:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
@@ -50,7 +50,7 @@
   .option { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 14px; background: #fff; color: var(--text); }
   .option:hover { border-color: var(--bb-blue); background: var(--bb-blue-light); }
   .option input { display: none; }
-  .opt-letter { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--text-light); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--text-light); transition: all 0.2s; }
+  .opt-letter { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--text-light); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--text-light); transition: all 0.2s; flex-shrink: 0;}
   
   .option.selected { border-color: var(--bb-blue); background: var(--bb-blue-light); box-shadow: 0 0 0 1px var(--bb-blue); }
   .option.selected .opt-letter { border-color: var(--bb-blue); background: var(--bb-blue); color: #fff; }
@@ -63,16 +63,23 @@
   
   .explain-box { margin-top: 12px; background: #f8fafc; border-left: 3px solid var(--bb-green); padding: 12px 16px; font-size: 13px; color: #475569; display: none; border-radius: 0 8px 8px 0; }
   
-  .btn-submit { width: 100%; background: var(--bb-blue); color: #fff; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; transition: all 0.2s; margin-top: 20px; box-shadow: 0 4px 12px rgba(0, 72, 143, 0.2); }
-  .btn-submit:hover { background: #00366b; transform: translateY(-2px); }
-  .btn-submit:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; box-shadow: none; }
-  
-  .result-card { display: none; margin-top: 20px; background: var(--bb-green-light); border: 1px solid var(--bb-green); border-radius: var(--radius); padding: 20px; text-align: center; }
+  .result-card { display: none; margin-top: 20px; background: var(--bb-green-light); border: 1px solid var(--bb-green); border-radius: var(--radius); padding: 20px; text-align: center; grid-column: 1 / -1;}
   .result-score { font-size: 32px; font-weight: 800; color: var(--bb-green); margin-bottom: 4px; }
   .result-text { font-size: 14px; color: #15803d; font-weight: 600; }
   
   details > summary { list-style: none; }
   details > summary::-webkit-details-marker { display: none; }
+
+  /* TABS */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; grid-column: 1 / -1; }
+  .tab-btn { padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); font-size: 14px; font-weight: 600; color: var(--text-light); cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .tab-btn:hover { border-color: var(--bb-blue); color: var(--bb-blue); }
+  .tab-btn.active { background: var(--bb-blue-light); border-color: var(--bb-blue); color: var(--bb-blue); }
+  .tab-btn.submit-all { background: var(--bb-green); color: #fff; border-color: var(--bb-green); margin-left: auto; box-shadow: 0 4px 12px rgba(65, 160, 69, 0.2); }
+  .tab-btn.submit-all:hover { background: #358238; color: #fff; }
+
+  .passage-view { display: none; }
+  .passage-view.active { display: contents; } 
 </style>
 </head>
 <body>
@@ -82,10 +89,10 @@
     <div class="logo-icon">O</div>
     <div class="logo-text">ORI <span>Learning</span></div>
   </div>
-  <div style="font-size:14px; font-weight:600; color:var(--text-light)">Part 6: Text Completion</div>
+  <div style="font-size:14px; font-weight:600; color:var(--text-light)">Part 6: Text Completion Full Test</div>
 </header>
 
-<div class="container">
+<div class="container" id="app-container">
   <!-- Philosophy Banner -->
   <div class="card" style="grid-column: 1 / -1; background: linear-gradient(135deg, var(--bb-blue), #002244); color: #fff;">
     <div class="card-body" style="padding: 24px 30px;">
@@ -139,7 +146,7 @@
             </div>
             <div style="font-size: 14px; color: #1e293b; background: var(--bb-green-light); padding: 14px; border-radius: 8px; line-height: 1.6;">
               <strong style="color: var(--bb-green); display: block; margin-bottom: 6px;">💡 Phân tích giải mã:</strong>
-              Câu trước nhắc đến thâm niên làm việc (nhằm tạo ngữ cảnh ghi nhận công lao). Câu sau có mốc "Next month" (Tháng tới) → Dùng thì tương lai. Tuy nhiên, hành động "thăng chức" (promote) đối với ông Chen phải là mang nghĩa Bị động (Được thăng chức). Nếu chỉ nhìn "Next month" mà hấp tấp, nhiều người sẽ đi tìm chữ "will promote". Sự liên kết ngữ cảnh giúp ta chốt ngay <strong>(C) will be promoted</strong>.
+              Câu trước nhắc đến thâm niên làm việc. Câu sau có mốc "Next month" (Tháng tới) → Dùng thì tương lai. Tuy nhiên, hành động "thăng chức" (promote) đối với ông Chen phải là mang nghĩa Bị động (Được thăng chức). Nhờ liên kết ngữ cảnh, ta chốt ngay <strong>(C) will be promoted</strong>.
             </div>
           </div>
         </div>
@@ -161,7 +168,7 @@
             </div>
             <div style="font-size: 14px; color: #1e293b; background: var(--bb-green-light); padding: 14px; border-radius: 8px; line-height: 1.6;">
               <strong style="color: var(--bb-green); display: block; margin-bottom: 6px;">💡 Phân tích giải mã:</strong>
-              Câu trước đưa ra ĐIỀU KIỆN (phần mềm cần 4GB dung lượng trống). Câu sau đưa ra HÀNH ĐỘNG HỆ QUẢ (người dùng nên xóa file cũ). Mối quan hệ "Nguyên nhân - Kết quả" cực kỳ rõ nét. Từ duy nhất phù hợp là <strong>(B) Therefore</strong> (Vì vậy). Nếu dịch cô lập từng câu, bạn sẽ rất mơ hồ khi chọn đáp án.
+              Câu trước đưa ra ĐIỀU KIỆN (phần mềm cần 4GB trống). Câu sau đưa ra HÀNH ĐỘNG HỆ QUẢ (nên xóa file cũ). Mối quan hệ "Nguyên nhân - Kết quả" cực kỳ rõ nét. Từ duy nhất phù hợp là <strong>(B) Therefore</strong> (Vì vậy). 
             </div>
           </div>
         </div>
@@ -173,7 +180,7 @@
             <strong style="color:var(--bb-blue); font-size:15px;">Cụm Từ Đi Liền Nhau (Business Collocations)</strong>
           </div>
           <div style="padding: 20px;">
-            <p style="font-size:14px; color:var(--text); margin-bottom:12px;">Bẫy kinh điển: 4 từ vựng dịch sang tiếng Việt nghe có vẻ giống nhau, nhưng trong văn phong thương mại, chúng có những "đối tác" (collocation) cố định không thể tách rời.</p>
+            <p style="font-size:14px; color:var(--text); margin-bottom:12px;">Bẫy kinh điển: 4 từ vựng dịch sang tiếng Việt nghe giống nhau, nhưng trong văn phong thương mại, chúng có những "đối tác" cố định không thể tách rời.</p>
             <div style="background: #f8fafc; border-left: 4px solid #94a3b8; padding: 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px;">
               <div style="font-style: italic; color: #334155; font-size: 14.5px; margin-bottom: 12px; line-height: 1.6;">"All employees are required to <strong>[ _______ ]</strong> the mandatory safety training by the end of this week."</div>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13.5px; color: #475569; font-weight: 500;">
@@ -183,7 +190,7 @@
             </div>
             <div style="font-size: 14px; color: #1e293b; background: var(--bb-green-light); padding: 14px; border-radius: 8px; line-height: 1.6;">
               <strong style="color: var(--bb-green); display: block; margin-bottom: 6px;">💡 Phân tích giải mã:</strong>
-              Dịch sang tiếng Việt, cả "finish" và "complete" đều là "hoàn thành". Tuy nhiên, trong tiếng Anh thương mại, đối với các thủ tục, khóa đào tạo, biểu mẫu, từ được ưu tiên tuyệt đối là <strong>(C) complete</strong> (complete a form, complete a training session). Đây là lý do bạn phải dịch cả câu thường xuyên để quen mắt với cụm từ.
+              Dịch sang tiếng Việt, cả "finish" và "complete" đều là "hoàn thành". Tuy nhiên, đối với các thủ tục, khóa đào tạo, biểu mẫu, từ được ưu tiên tuyệt đối là <strong>(C) complete</strong> (complete a form, complete a training session).
             </div>
           </div>
         </div>
@@ -207,7 +214,7 @@
             </div>
             <div style="font-size: 14px; color: #1e293b; background: var(--bb-green-light); padding: 14px; border-radius: 8px; line-height: 1.6;">
               <strong style="color: var(--bb-green); display: block; margin-bottom: 6px;">💡 Phân tích giải mã:</strong>
-              Ở đáp án (B) xuất hiện cụm <strong>"this closure"</strong> (việc đóng cửa này). Chữ "This" hoạt động như một sợi dây liên kết, trỏ thẳng ngược lại sự kiện "closed for renovation" ở ngay câu đằng trước. Tính kết dính mạch lạc này giúp ta tự tin khoanh <strong>(B)</strong> mà không cần dịch từng câu một cách mông lung.
+              Ở đáp án (B) xuất hiện cụm <strong>"this closure"</strong> (việc đóng cửa này). Chữ "This" hoạt động như một sợi dây liên kết, trỏ thẳng ngược lại sự kiện "closed for renovation" ở ngay câu đằng trước. Giúp ta tự tin khoanh <strong>(B)</strong>.
             </div>
           </div>
         </div>
@@ -216,161 +223,238 @@
     </details>
   </div>
 
-  <!-- Left: Passage -->
-  <div class="card">
-    <div class="card-header">
-      <span>Đoạn văn (Questions 131 - 134)</span>
-      <span style="font-size:12px; background:rgba(255,255,255,0.2); padding:3px 10px; border-radius:20px;">Aviation / Travel</span>
-    </div>
-    <div class="card-body passage">
-      <div class="passage-header">
-        <strong>To:</strong> All Cabin Crew Members<br>
-        <strong>From:</strong> Flight Operations Department<br>
-        <strong>Date:</strong> October 15<br>
-        <strong>Subject:</strong> Updated Uniform Guidelines
-      </div>
-      <p>Dear Crew Members,</p><br>
-      <p>We would like to inform you that the updated uniform policy will go into effect starting November 1. Please ensure that you have reviewed the attached document, which details the changes to our dress code. <span class="blank" id="b131">131</span>.</p>
-      <br>
-      <p>As part of this update, all flight attendants are <span class="blank" id="b132">132</span> to wear the new name badges provided last week. If you have not yet received your badge, please contact the HR department immediately. Failing to comply with the new guidelines may result in disciplinary <span class="blank" id="b133">133</span>.</p>
-      <br>
-      <p>We appreciate your dedication to maintaining the professional image of Bamboo Airways. <span class="blank" id="b134">134</span></p>
-      <br>
-      <p>Best regards,</p>
-      <p>Flight Operations Team</p>
-    </div>
+  <div class="tabs" id="tabs-container"></div>
+  <div id="test-views" style="display: contents;"></div>
+
+  <div class="result-card" id="result-card">
+    <div class="result-score" id="result-score">0/16</div>
+    <div class="result-text" id="result-text"></div>
   </div>
-  
-  <!-- Right: Questions -->
-  <div class="card">
-    <div class="card-header green">
-      <span>Câu hỏi</span>
-    </div>
-    <div class="card-body" id="questions-container">
-      
-      <!-- Q131 -->
-      <div class="question" id="q131">
-        <div class="q-num">131.</div>
-        <div class="options">
-          <label class="option"><div class="opt-letter">A</div><span>The new uniforms will be distributed tomorrow.</span><input type="radio" name="q131" value="A"></label>
-          <label class="option"><div class="opt-letter">B</div><span>This document outlines the acceptable accessories.</span><input type="radio" name="q131" value="B"></label>
-          <label class="option"><div class="opt-letter">C</div><span>We are hiring more cabin crew next month.</span><input type="radio" name="q131" value="C"></label>
-          <label class="option"><div class="opt-letter">D</div><span>Please submit your time-off requests soon.</span><input type="radio" name="q131" value="D"></label>
-        </div>
-        <div class="explain-box"><strong>Giải thích:</strong> Chỗ trống cần điền một câu (Sentence Insertion). Câu trước nhắc đến "the attached document" (tài liệu đính kèm). Do đó, câu (B) với từ khóa "This document" là sự liên kết ngữ cảnh (Cohesion) hoàn hảo.</div>
-      </div>
 
-      <!-- Q132 -->
-      <div class="question" id="q132">
-        <div class="q-num">132.</div>
-        <div class="options">
-          <label class="option"><div class="opt-letter">A</div><span>require</span><input type="radio" name="q132" value="A"></label>
-          <label class="option"><div class="opt-letter">B</div><span>requires</span><input type="radio" name="q132" value="B"></label>
-          <label class="option"><div class="opt-letter">C</div><span>requiring</span><input type="radio" name="q132" value="C"></label>
-          <label class="option"><div class="opt-letter">D</div><span>required</span><input type="radio" name="q132" value="D"></label>
-        </div>
-        <div class="explain-box"><strong>Giải thích:</strong> Cấu trúc bị động: "be required to do sth" (được yêu cầu làm gì). Trạng thái bị động "are required to wear" mang ý nghĩa yêu cầu.</div>
-      </div>
-      
-      <!-- Q133 -->
-      <div class="question" id="q133">
-        <div class="q-num">133.</div>
-        <div class="options">
-          <label class="option"><div class="opt-letter">A</div><span>action</span><input type="radio" name="q133" value="A"></label>
-          <label class="option"><div class="opt-letter">B</div><span>schedule</span><input type="radio" name="q133" value="B"></label>
-          <label class="option"><div class="opt-letter">C</div><span>allowance</span><input type="radio" name="q133" value="C"></label>
-          <label class="option"><div class="opt-letter">D</div><span>performance</span><input type="radio" name="q133" value="D"></label>
-        </div>
-        <div class="explain-box"><strong>Giải thích:</strong> Collocation: "disciplinary action" (biện pháp kỷ luật). Câu mang nghĩa: Việc không tuân thủ có thể dẫn đến biện pháp kỷ luật.</div>
-      </div>
-
-      <!-- Q134 -->
-      <div class="question" id="q134">
-        <div class="q-num">134.</div>
-        <div class="options">
-          <label class="option"><div class="opt-letter">A</div><span>We hope you enjoy your flight.</span><input type="radio" name="q134" value="A"></label>
-          <label class="option"><div class="opt-letter">B</div><span>Thank you for your cooperation.</span><input type="radio" name="q134" value="B"></label>
-          <label class="option"><div class="opt-letter">C</div><span>The training session will begin shortly.</span><input type="radio" name="q134" value="C"></label>
-          <label class="option"><div class="opt-letter">D</div><span>Please keep your seatbelts fastened.</span><input type="radio" name="q134" value="D"></label>
-        </div>
-        <div class="explain-box"><strong>Giải thích:</strong> Đoạn kết. Bức thư yêu cầu nhân viên tuân thủ hướng dẫn đồng phục mới của hãng hàng không thường kết thúc bằng lời cảm ơn sự hợp tác: "Thank you for your cooperation."</div>
-      </div>
-
-      <button class="btn-submit" id="btn-submit">Chấm Điểm</button>
-      
-      <div class="result-card" id="result-card">
-        <div class="result-score" id="result-score">0/4</div>
-        <div class="result-text" id="result-text"></div>
-      </div>
-
-    </div>
-  </div>
 </div>
 
 <script>
-  const answers = { q131: 'B', q132: 'D', q133: 'A', q134: 'B' };
+const data = [
+  {
+    id: "p1",
+    title: "Passage 1 (131-134)",
+    tag: "Aviation / Uniform",
+    text: `<div class="passage-header"><strong>To:</strong> All Cabin Crew Members<br><strong>From:</strong> Flight Operations Department<br><strong>Date:</strong> October 15<br><strong>Subject:</strong> Updated Uniform Guidelines</div><p>Dear Crew Members,</p><br><p>We would like to inform you that the updated uniform policy will go into effect starting November 1. Please ensure that you have reviewed the attached document, which details the changes to our dress code. <span class="blank" id="b131">131</span>.</p><br><p>As part of this update, all flight attendants are <span class="blank" id="b132">132</span> to wear the new name badges provided last week. If you have not yet received your badge, please contact the HR department immediately. Failing to comply with the new guidelines may result in disciplinary <span class="blank" id="b133">133</span>.</p><br><p>We appreciate your <span class="blank" id="b134">134</span> in maintaining the professional image of Bamboo Airways.</p><br><p>Best regards,</p><p>Flight Operations Team</p>`,
+    questions: [
+      { id: 131, options: ["The new uniforms will be distributed tomorrow.", "This document outlines the acceptable accessories.", "We are hiring more cabin crew next month.", "Please submit your time-off requests soon."], answer: 1, exp: "<strong>Giải thích:</strong> Điền nguyên câu. Câu trước nhắc đến 'the attached document'. Đáp án có chữ 'This document' là sự liên kết hoàn hảo." },
+      { id: 132, options: ["require", "requires", "requiring", "required"], answer: 3, exp: "<strong>Giải thích:</strong> Bị động: 'are required to do sth' (được yêu cầu làm gì)." },
+      { id: 133, options: ["action", "schedule", "allowance", "performance"], answer: 0, exp: "<strong>Giải thích:</strong> Collocation: 'disciplinary action' (biện pháp kỷ luật)." },
+      { id: 134, options: ["cooperation", "application", "exception", "revision"], answer: 0, exp: "<strong>Giải thích:</strong> 'appreciate your cooperation' (cảm ơn sự hợp tác của bạn)." }
+    ]
+  },
+  {
+    id: "p2",
+    title: "Passage 2 (135-138)",
+    tag: "Logistics / Shipping",
+    text: `<div class="passage-header"><strong>To:</strong> All Customers<br><strong>From:</strong> Swift Logistics<br><strong>Subject:</strong> Delivery Delays</div><p>Dear Valued Customers,</p><br><p>Due to severe weather conditions in the northern region, our delivery schedule has been significantly <span class="blank" id="b135">135</span>. We <span class="blank" id="b136">136</span> our best to resume normal operations as soon as it is safe to do so. <span class="blank" id="b137">137</span>. Therefore, please expect a delay of up to three business days for your packages.</p><br><p>We apologize for the inconvenience and appreciate your <span class="blank" id="b138">138</span>.</p>`,
+    questions: [
+      { id: 135, options: ["disrupt", "disrupting", "disrupted", "disruption"], answer: 2, exp: "<strong>Giải thích:</strong> Bị động hiện tại hoàn thành 'has been disrupted' (bị gián đoạn)." },
+      { id: 136, options: ["do", "are doing", "did", "done"], answer: 1, exp: "<strong>Giải thích:</strong> Hành động đang nỗ lực diễn ra ngay lúc này -> 'are doing our best' (đang làm hết sức)." },
+      { id: 137, options: ["The weather forecast predicts clear skies tomorrow.", "Our drivers' safety is our top priority.", "You can track your order on our website.", "Shipping costs will increase next month."], answer: 1, exp: "<strong>Giải thích:</strong> Câu trước nói về 'as soon as it is safe to do so' (chừng nào an toàn để làm vậy). Đáp án 'An toàn của tài xế là ưu tiên hàng đầu' kết nối trực tiếp với từ khóa safe." },
+      { id: 138, options: ["patience", "patient", "patiently", "patents"], answer: 0, exp: "<strong>Giải thích:</strong> Sau tính từ sở hữu 'your' cần một Danh từ. 'patience' (sự kiên nhẫn)." }
+    ]
+  },
+  {
+    id: "p3",
+    title: "Passage 3 (139-142)",
+    tag: "Office / Policy",
+    text: `<div class="passage-header"><strong>Notice to All Employees</strong></div><p>Effective March 1st, the company will implement a new expense reporting system. <span class="blank" id="b139">139</span>. Under the new system, all receipts must be uploaded <span class="blank" id="b140">140</span> through the mobile app. Paper receipts will no longer be accepted by the accounting department.</p><br><p><span class="blank" id="b141">141</span>, employees who fail to submit their reports by the 5th of each month will not be reimbursed. If you have any questions, please contact the finance team <span class="blank" id="b142">142</span>.</p>`,
+    questions: [
+      { id: 139, options: ["This change aims to speed up the reimbursement process.", "The marketing budget was reduced last year.", "We are hiring a new accounting manager.", "Our mobile app has over a million downloads."], answer: 0, exp: "<strong>Giải thích:</strong> Câu trước thông báo một hệ thống mới. 'This change' thay thế cho sự kiện đó, và đưa ra mục đích của hệ thống." },
+      { id: 140, options: ["direct", "directly", "direction", "directs"], answer: 1, exp: "<strong>Giải thích:</strong> Cần trạng từ bổ nghĩa cho động từ 'uploaded'. -> directly (một cách trực tiếp)." },
+      { id: 141, options: ["Furthermore", "However", "Instead", "Meanwhile"], answer: 0, exp: "<strong>Giải thích:</strong> Đoạn trước đưa ra 1 luật (không nhận biên lai giấy). Đoạn này đưa thêm 1 luật nữa (nộp trễ không được hoàn tiền). Dùng 'Furthermore' (Hơn thế nữa) để bổ sung ý." },
+      { id: 142, options: ["immediately", "carefully", "rarely", "exactly"], answer: 0, exp: "<strong>Giải thích:</strong> Collocation: 'contact someone immediately' (liên hệ ngay lập tức)." }
+    ]
+  },
+  {
+    id: "p4",
+    title: "Passage 4 (143-146)",
+    tag: "Event / Invitation",
+    text: `<p>Dear Ms. Robinson,</p><br><p>You are cordially invited to the annual Tech Innovators Conference, which will be held at the Grand Plaza Hotel on September 12. As one of the leading <span class="blank" id="b143">143</span> in the software industry, your insights would be highly valuable to our attendees. We would be honored if you could deliver the keynote address.</p><br><p><span class="blank" id="b144">144</span>, we have attached a tentative schedule for your review. <span class="blank" id="b145">145</span>. Please let us know if you can <span class="blank" id="b146">146</span> this invitation by August 1st.</p><br><p>Sincerely,</p><p>Event Committee</p>`,
+    questions: [
+      { id: 143, options: ["experts", "expertise", "expertly", "expert"], answer: 0, exp: "<strong>Giải thích:</strong> Cấu trúc 'one of the + Danh từ số nhiều'. -> experts (những chuyên gia)." },
+      { id: 144, options: ["To help you decide", "In contrast", "As a result", "For instance"], answer: 0, exp: "<strong>Giải thích:</strong> Họ mời diễn thuyết, sau đó đính kèm lịch trình. Mục đích đính kèm lịch trình là 'Để giúp bạn quyết định' (To help you decide)." },
+      { id: 145, options: ["The hotel offers free breakfast.", "We can adjust the speaking time to fit your availability.", "The software requires a license key.", "You must pay the registration fee online."], answer: 1, exp: "<strong>Giải thích:</strong> Câu trước gửi lịch trình. Câu này nói 'Chúng tôi có thể điều chỉnh thời gian nói để phù hợp với bạn'. Tính liên kết rất cao để thuyết phục người được mời." },
+      { id: 146, options: ["accept", "invent", "exclude", "afford"], answer: 0, exp: "<strong>Giải thích:</strong> Collocation: 'accept an invitation' (chấp nhận lời mời)." }
+    ]
+  }
+];
+
+let currentPassageId = "p1";
+let userAnswers = {}; // { q131: 1, q132: 3 ... }
+let isSubmitted = false;
+
+function renderApp() {
+  const tabsContainer = document.getElementById("tabs-container");
+  const viewsContainer = document.getElementById("test-views");
   
-  // Selection logic
-  document.querySelectorAll('.option').forEach(opt => {
-    opt.addEventListener('click', function() {
-      const qBox = this.closest('.question');
-      if (qBox.classList.contains('submitted')) return; // prevent change after submit
-      
-      qBox.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-      this.classList.add('selected');
-      this.querySelector('input').checked = true;
-      
-      // Update blank in passage
-      const qId = qBox.id; // e.g. q131
-      const blankId = 'b' + qId.substring(1);
-      const blankEl = document.getElementById(blankId);
-      if(blankEl) {
-        blankEl.textContent = this.querySelector('span').textContent;
-        blankEl.style.color = 'var(--bb-blue)';
-        blankEl.style.fontWeight = '700';
-        blankEl.style.background = 'transparent';
-        blankEl.style.borderBottomStyle = 'dashed';
-      }
-    });
+  // Build Tabs
+  let tabsHtml = "";
+  data.forEach(p => {
+    tabsHtml += \`<button class="tab-btn \${p.id === currentPassageId ? 'active' : ''}" onclick="switchTab('\${p.id}')">\${p.title}</button>\`;
   });
+  tabsHtml += \`<button class="tab-btn submit-all" onclick="submitTest()">Chấm Điểm Toàn Bộ</button>\`;
+  tabsContainer.innerHTML = tabsHtml;
 
-  // Submit logic
-  document.getElementById('btn-submit').addEventListener('click', function() {
-    let score = 0;
-    
-    Object.keys(answers).forEach(q => {
-      const qBox = document.getElementById(q);
-      qBox.classList.add('submitted'); // lock inputs
-      
-      const selected = qBox.querySelector('input:checked');
-      if (selected) {
-        if (selected.value === answers[q]) {
-          score++;
-          selected.parentElement.classList.add('correct');
-        } else {
-          selected.parentElement.classList.add('wrong');
-          // highlight correct one
-          qBox.querySelector(`input[value="${answers[q]}"]`).parentElement.classList.add('correct');
+  // Build Views
+  let viewsHtml = "";
+  data.forEach(p => {
+    let qHtml = "";
+    p.questions.forEach(q => {
+      let optsHtml = "";
+      q.options.forEach((opt, idx) => {
+        const isChecked = userAnswers['q'+q.id] === idx ? 'checked' : '';
+        const isSelected = userAnswers['q'+q.id] === idx ? 'selected' : '';
+        optsHtml += \`
+          <label class="option \${isSelected}" onclick="selectOption('\${p.id}', \${q.id}, \${idx})">
+            <div class="opt-letter">\${String.fromCharCode(65+idx)}</div>
+            <span>\${opt}</span>
+            <input type="radio" name="q\${q.id}" value="\${idx}" \${isChecked}>
+          </label>\`;
+      });
+      qHtml += \`
+        <div class="question" id="q\${q.id}">
+          <div class="q-num">\${q.id}.</div>
+          <div class="options">\${optsHtml}</div>
+          <div class="explain-box" id="exp\${q.id}">\${q.exp}</div>
+        </div>\`;
+    });
+
+    viewsHtml += \`
+      <div class="passage-view \${p.id === currentPassageId ? 'active' : ''}" id="view-\${p.id}">
+        <!-- Left: Passage -->
+        <div class="card">
+          <div class="card-header">
+            <span>Đoạn văn (\${p.title})</span>
+            <span style="font-size:12px; background:rgba(255,255,255,0.2); padding:3px 10px; border-radius:20px;">\${p.tag}</span>
+          </div>
+          <div class="card-body passage">
+            \${p.text}
+          </div>
+        </div>
+        
+        <!-- Right: Questions -->
+        <div class="card">
+          <div class="card-header green">
+            <span>Câu hỏi</span>
+          </div>
+          <div class="card-body">
+            \${qHtml}
+          </div>
+        </div>
+      </div>
+    \`;
+  });
+  viewsContainer.innerHTML = viewsHtml;
+
+  // Restore blank text
+  if(!isSubmitted) {
+    data.forEach(p => {
+      p.questions.forEach(q => {
+        if(userAnswers['q'+q.id] !== undefined) {
+          const blankEl = document.getElementById('b'+q.id);
+          if(blankEl) {
+            blankEl.textContent = q.options[userAnswers['q'+q.id]];
+            blankEl.style.color = 'var(--bb-blue)';
+            blankEl.style.fontWeight = '700';
+            blankEl.style.background = 'transparent';
+            blankEl.style.borderBottomStyle = 'dashed';
+          }
         }
-      } else {
-        // none selected
-        qBox.querySelector(`input[value="${answers[q]}"]`).parentElement.classList.add('correct');
-      }
-      
-      // Show explanation
-      qBox.querySelector('.explain-box').style.display = 'block';
+      });
     });
+  }
+}
 
-    // Update Result
-    document.getElementById('result-score').textContent = `${score}/4`;
-    let txt = score === 4 ? 'Tuyệt vời! Bạn là Master Part 6.' : 
-              score >= 2 ? 'Khá tốt! Hãy đọc kỹ giải thích để tiến bộ.' : 
-              'Cần cố gắng hơn! Luyện tập nhiều nhé.';
-    document.getElementById('result-text').textContent = txt;
-    document.getElementById('result-card').style.display = 'block';
-    
-    this.style.display = 'none'; // hide submit button
+function switchTab(id) {
+  currentPassageId = id;
+  renderApp();
+  if(isSubmitted) showExplanations();
+}
+
+window.selectOption = function(pId, qId, optIdx) {
+  if (isSubmitted) return;
+  userAnswers['q'+qId] = optIdx;
+  
+  // DOM update for speed instead of full re-render
+  const qBox = document.getElementById('q'+qId);
+  qBox.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  const opts = qBox.querySelectorAll('.option');
+  opts[optIdx].classList.add('selected');
+  opts[optIdx].querySelector('input').checked = true;
+  
+  const blankEl = document.getElementById('b'+qId);
+  const pData = data.find(p => p.id === pId);
+  const qData = pData.questions.find(q => q.id === qId);
+  if(blankEl) {
+    blankEl.textContent = qData.options[optIdx];
+    blankEl.style.color = 'var(--bb-blue)';
+    blankEl.style.fontWeight = '700';
+    blankEl.style.background = 'transparent';
+    blankEl.style.borderBottomStyle = 'dashed';
+  }
+}
+
+window.submitTest = function() {
+  if(isSubmitted) return;
+  
+  let score = 0;
+  data.forEach(p => {
+    p.questions.forEach(q => {
+      if(userAnswers['q'+q.id] === q.answer) score++;
+    });
   });
+
+  isSubmitted = true;
+  showExplanations();
+
+  document.getElementById('result-score').textContent = \`\${score}/16\`;
+  let txt = score >= 14 ? 'Tuyệt vời! Bạn đã master Part 6.' : 
+            score >= 10 ? 'Khá tốt! Hãy đọc kỹ giải thích để tiến bộ.' : 
+            'Cần cố gắng hơn! Luyện tập dịch văn bản nhiều nhé.';
+  document.getElementById('result-text').textContent = txt;
+  document.getElementById('result-card').style.display = 'block';
+  
+  // Scroll to result
+  document.getElementById('result-card').scrollIntoView({behavior: 'smooth'});
+}
+
+function showExplanations() {
+  data.forEach(p => {
+    const pView = document.getElementById('view-'+p.id);
+    if(pView) {
+      p.questions.forEach(q => {
+        const qBox = document.getElementById('q'+q.id);
+        if(!qBox) return;
+        
+        qBox.classList.add('submitted');
+        const opts = qBox.querySelectorAll('.option');
+        
+        const userAns = userAnswers['q'+q.id];
+        
+        if (userAns !== undefined) {
+          if (userAns === q.answer) {
+            opts[userAns].classList.add('correct');
+          } else {
+            opts[userAns].classList.add('wrong');
+            opts[q.answer].classList.add('correct');
+          }
+        } else {
+          opts[q.answer].classList.add('correct');
+        }
+        
+        document.getElementById('exp'+q.id).style.display = 'block';
+      });
+    }
+  });
+}
+
+renderApp();
 </script>
 </body>
 </html>
