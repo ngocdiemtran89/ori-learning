@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORI ACADEMY - Chinh Phục Liên Từ & Giới Từ</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1E3A8A', // Deep Blue
+                            orange: '#F97316', // Orange
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Confetti Library for Celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+
+    <!-- HEADER -->
+    <header class="glass-header text-white sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="switchTab('dashboard')">
+                    <div class="w-10 h-10 bg-brand-orange text-white rounded-lg flex items-center justify-center font-bold text-xl shadow-md">
+                        ORI
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold tracking-wider">ORI ACADEMY</h1>
+                        <p class="text-xs text-blue-200">TOEIC Mastery Program</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Tabs -->
+                <div class="flex space-x-2 sm:space-x-8 h-full">
+                    <button id="tab-dashboard" onclick="switchTab('dashboard')" class="tab-btn active h-full px-2 text-sm font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie"></i> <span class="hidden md:inline">Tiến độ</span>
+                    </button>
+                    <button id="tab-theory" onclick="switchTab('theory')" class="tab-btn text-gray-300 h-full px-2 text-sm font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-book-open"></i> <span class="hidden md:inline">Lý thuyết</span>
+                    </button>
+                    <button id="tab-practice" onclick="switchTab('practice')" class="tab-btn text-gray-300 h-full px-2 text-sm font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-pencil"></i> <span class="hidden md:inline">Luyện tập</span>
+                    </button>
+                    <button id="tab-bookmarks" onclick="switchTab('bookmarks')" class="tab-btn text-gray-300 h-full px-2 text-sm font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-bookmark"></i> <span class="hidden md:inline">Đã lưu</span>
+                    </button>
+                </div>
+
+                <!-- Theme Toggle -->
+                <div class="flex items-center">
+                    <button id="themeToggleBtn" class="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors tooltip" data-tooltip="Giao diện Sáng/Tối">
+                        <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full overflow-hidden flex flex-col relative">
+        
+        <!-- SECTION 1: DASHBOARD -->
+        <section id="section-dashboard" class="section-view flex-col h-full overflow-y-auto">
+            <div class="mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-blue dark:text-blue-400">Chào mừng trở lại!</h2>
+                <p class="text-muted mt-2">Theo dõi tiến độ học tập Liên từ & Giới từ TOEIC của bạn tại đây.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-card p-6 rounded-2xl shadow-sm border border-color">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-muted font-medium text-sm uppercase">Từ vựng đã thuộc</p>
+                            <h3 class="text-3xl font-bold text-main mt-1" id="dashboardLearnedCount">0 / 72</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900 text-brand-blue dark:text-blue-300 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                    </div>
+                    <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2.5">
+                        <div id="dashboardProgress" class="bg-brand-orange h-2.5 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="bg-card p-6 rounded-2xl shadow-sm border border-color">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-muted font-medium text-sm uppercase">Điểm kiểm tra trung bình</p>
+                            <h3 class="text-3xl font-bold text-main mt-1" id="dashboardAvgScore">0%</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card p-6 rounded-2xl shadow-sm border border-color">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-muted font-medium text-sm uppercase">Số bài kiểm tra đã làm</p>
+                            <h3 class="text-3xl font-bold text-main mt-1" id="dashboardQuizzesTaken">0</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900 text-brand-orange dark:text-orange-400 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-brand-blue text-white p-8 rounded-2xl shadow-md relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 opacity-20 text-9xl"><i class="fa-solid fa-rocket"></i></div>
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold mb-4">Bạn đã sẵn sàng chinh phục TOEIC Part 5?</h3>
+                    <p class="mb-6 max-w-2xl text-blue-100">Liên từ và Giới từ là chủ điểm ngữ pháp chiếm tỷ trọng lớn trong bài thi TOEIC. Hãy học qua Flashcards và làm bài kiểm tra để thành thạo 72 cấu trúc cốt lõi này.</p>
+                    <div class="flex gap-4">
+                        <button onclick="switchTab('theory')" class="px-6 py-3 bg-white text-brand-blue font-bold rounded-lg hover:bg-gray-100 transition shadow-sm">
+                            <i class="fa-solid fa-book-open mr-2"></i> Học Lý Thuyết
+                        </button>
+                        <button onclick="switchTab('practice')" class="px-6 py-3 bg-brand-orange text-white font-bold rounded-lg hover:bg-orange-600 transition shadow-sm">
+                            <i class="fa-solid fa-play mr-2"></i> Làm Bài Kiểm Tra
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: LÝ THUYẾT -->
+        <section id="section-theory" class="hidden flex-col h-full">
+            <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-brand-blue dark:text-blue-400">72 Liên Từ & Giới Từ</h2>
+                    <p class="text-muted text-sm mt-1">Sử dụng bảng hoặc thẻ ghi nhớ (flashcard) để học.</p>
+                </div>
+                
+                <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                    <!-- Search -->
+                    <div class="relative flex-grow md:w-64">
+                        <input type="text" id="searchInput" placeholder="Tìm từ vựng, nghĩa..." class="w-full pl-10 pr-4 py-2 bg-card border border-color rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange transition shadow-sm text-main">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-search text-gray-400"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Filter -->
+                    <select id="categoryFilter" class="py-2 px-4 bg-card border border-color rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-orange shadow-sm text-main appearance-none cursor-pointer">
+                        <option value="all">Tất cả chủ đề</option>
+                        <option value="cause">Nguyên nhân / Kết quả</option>
+                        <option value="contrast">Nhượng bộ / Tương phản</option>
+                        <option value="time">Thời gian</option>
+                        <option value="purpose">Mục đích</option>
+                        <option value="condition">Điều kiện</option>
+                        <option value="addition">Bổ sung / Liệt kê</option>
+                        <option value="exception">Ngoại trừ</option>
+                        <option value="other">Khác</option>
+                    </select>
+
+                    <!-- View Mode Toggle -->
+                    <button id="viewModeBtn" class="w-10 h-10 bg-card border border-color rounded-lg flex items-center justify-center text-main hover:text-brand-orange transition shadow-sm tooltip" data-tooltip="Đổi chế độ xem">
+                        <i id="viewModeIcon" class="fa-solid fa-layer-group text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TABLE VIEW -->
+            <div id="theoryTableContainer" class="bg-card rounded-xl shadow-sm border border-color overflow-hidden flex-grow flex flex-col">
+                <div class="overflow-y-auto flex-grow relative h-0">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-slate-700 relative">
+                        <thead class="bg-gray-50 dark:bg-slate-800 sticky top-0 z-10 shadow-sm">
+                            <tr>
+                                <th scope="col" class="px-3 sm:px-6 py-3 text-center text-xs font-semibold text-brand-blue dark:text-blue-400 uppercase tracking-wider w-16"><i class="fa-solid fa-check-double"></i></th>
+                                <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-brand-blue dark:text-blue-400 uppercase tracking-wider w-1/3">Từ Vựng</th>
+                                <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-brand-blue dark:text-blue-400 uppercase tracking-wider w-1/4">Nghĩa</th>
+                                <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-brand-blue dark:text-blue-400 uppercase tracking-wider">Ví Dụ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="theoryTableBody" class="divide-y divide-gray-200 dark:divide-slate-700 bg-card">
+                            <!-- Rendered via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- FLASHCARD VIEW -->
+            <div id="theoryFlashcardContainer" class="hidden flex-grow overflow-y-auto">
+                <div id="theoryFlashcardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-6">
+                    <!-- Rendered via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THỰC HÀNH (QUIZ) -->
+        <section id="section-practice" class="hidden flex-col h-full relative">
+            <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-brand-blue dark:text-blue-400">Luyện Tập TOEIC Part 5</h2>
+                    <p class="text-muted text-sm mt-1">Đề thi ngẫu nhiên. <strong class="text-brand-orange">Giải thích chi tiết</strong> sẽ hiện sau khi bạn chọn đáp án.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="startNewQuiz()" class="px-4 py-2 bg-card border border-color text-main rounded-lg hover:bg-hover transition shadow-sm font-medium text-sm flex items-center gap-2 tooltip" data-tooltip="Bỏ đề này và tạo đề khác">
+                        <i class="fa-solid fa-rotate-right"></i> Đề Mới
+                    </button>
+                    <div class="bg-brand-blue text-white px-5 py-2 rounded-lg font-bold shadow-md flex-shrink-0">
+                        Điểm: <span id="scoreDisplay" class="text-brand-orange text-xl">0</span> / <span id="totalDisplay" class="text-lg">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Container -->
+            <div class="flex-grow overflow-y-auto pr-2 pb-10" id="quizContainer">
+                <!-- Rendered via JS -->
+            </div>
+            
+            <!-- Quiz Completion Modal -->
+            <div id="quizCompletionModal" class="hidden absolute inset-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm z-20 flex flex-col items-center justify-center animate-fade-in-up rounded-2xl">
+                <div class="bg-card p-8 rounded-2xl shadow-xl border border-color text-center max-w-md mx-4">
+                    <div class="w-20 h-20 bg-brand-orange text-white rounded-full flex items-center justify-center text-4xl mx-auto mb-4 shadow-lg">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-brand-blue dark:text-blue-400 mb-2">Hoàn Thành Bài Tập!</h2>
+                    <p class="text-muted mb-4">Điểm số của bạn:</p>
+                    <div class="text-5xl font-black text-main mb-4" id="modalScoreText">10 / 10</div>
+                    <p id="modalFeedbackText" class="text-green-600 font-medium mb-8">Tuyệt vời! Bạn nắm rất vững kiến thức phần này.</p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button onclick="document.getElementById('quizCompletionModal').classList.add('hidden')" class="px-6 py-3 border border-color text-main rounded-lg hover:bg-hover transition font-medium w-full">
+                            Xem Lại Bài Làm
+                        </button>
+                        <button onclick="startNewQuiz()" class="px-6 py-3 bg-brand-blue text-white rounded-lg hover:bg-blue-800 transition font-bold w-full shadow-md">
+                            Làm Đề Mới
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: BOOKMARKS -->
+        <section id="section-bookmarks" class="hidden flex-col h-full">
+            <div class="mb-6">
+                <h2 class="text-2xl sm:text-3xl font-bold text-brand-blue dark:text-blue-400">Câu Hỏi Đã Lưu</h2>
+                <p class="text-muted text-sm mt-1">Ôn tập lại những câu hỏi bạn đã đánh dấu trang trong quá trình luyện tập.</p>
+            </div>
+
+            <div class="flex-grow overflow-y-auto pr-2 pb-10" id="bookmarksContainer">
+                <!-- Rendered via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
