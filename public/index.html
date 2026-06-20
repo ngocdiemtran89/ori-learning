@@ -174,7 +174,8 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
     <button class="sb-item" data-key="part1" onclick="go('part1')"><span class="ico">📸</span> Part 1 — Photographs</button>
     <button class="sb-item" data-key="part2" onclick="go('part2')"><span class="ico">🎧</span> Part 2 — Q&A</button>
     <button class="sb-item" onclick="window.location.href='part34/index.html'"><span class="ico">💬</span> Part 3/4 — Conversations</button>
-    <button class="sb-item" data-key="part5" onclick="go('part5')"><span class="ico">📖</span> Part 5 — Conjunctions & Preps<span class="badge-hot">🔥</span></button>
+    <button class="sb-item" data-key="part5" onclick="go('part5')"><span class="ico">📖</span> Part 5 — Grammar<span class="badge-hot">🔥</span></button>
+    <button class="sb-item" data-key="part5_conj" onclick="go('part5_conj')"><span class="ico">🧩</span> Part 5 — Conjunctions<span class="badge-hot">New</span></button>
     <button class="sb-item" data-key="part6" onclick="go('part6')"><span class="ico">📄</span> Part 6 — Text Completion<span class="badge-hot">New</span></button>
     <button class="sb-item" data-key="part7" onclick="go('part7')"><span class="ico">📑</span> Part 7 — Reading</button>
 
@@ -205,7 +206,8 @@ var TOOLS = {
   placement: {url:'https://ori-toeic-placement-test.vercel.app', name:'Test Đầu Vào', tag:'Miễn phí'},
   part1:     {url:'https://ori-toeic-part1.vercel.app', name:'Part 1 — Photographs', tag:'Listening'},
   part2:     {url:'https://toeic-part2-app.vercel.app', name:'Part 2 — Q&A', tag:'Listening'},
-  part5:     {url:'/part5/index.html', name:'Part 5 — Conjunctions & Preps', tag:'Reading'},
+  part5:     {url:'https://ori-part5-grammar.vercel.app', name:'Part 5 — Grammar', tag:'Reading · AI'},
+  part5_conj:{url:'/part5/index.html', name:'Part 5 — Conjunctions & Preps', tag:'Reading'},
   part6:     {url:'/part6.html', name:'Part 6 — Text Completion', tag:'Reading'},
   part7:     {url:'https://part-7-toeic-ori.vercel.app', name:'Part 7 — Reading', tag:'Reading'},
   vocab:     {url:'https://ori-toeic-vocab.vercel.app', name:'Từ Vựng TOEIC', tag:'Vocabulary'},
@@ -301,7 +303,8 @@ function renderDashboard(){
     {key:'placement',ico:'📝',name:'Test Đầu Vào',desc:'Làm 20 câu nhanh để ORI biết bạn đang ở level nào → tư vấn đúng khóa. Miễn phí 100%.',tag:'Miễn phí',cls:'c2'},
     {key:'part1',ico:'📸',name:'Part 1 — Photographs',desc:'Nghe mô tả ảnh, chọn câu đúng. Luyện phản xạ nghe — chỉ cần 5 phút/ngày.',tag:'Listening',cls:'c3'},
     {key:'part2',ico:'🎧',name:'Part 2 — Q&A',desc:'Câu hỏi-đáp nhanh — loại bỏ bẫy, tập trung từ khóa. 25 câu/bộ đề thực chiến.',tag:'Listening',cls:'c4'},
-    {key:'part5',ico:'📖',name:'Part 5 — Conjunctions & Preps',desc:'Chinh phục 72 Liên từ & Giới từ TOEIC. Tích hợp Flashcards lật 3D, từ vựng và Quiz tự động chấm.',tag:'Reading',cls:'c5'},
+    {key:'part5',ico:'📖',name:'Part 5 — Grammar',desc:'Bài tập từ loại, ngữ pháp, từ vựng — AI giải thích chi tiết từng câu. 120+ câu hỏi.',tag:'Reading · AI',cls:'c5'},
+    {key:'part5_conj',ico:'🧩',name:'Part 5 — Conjunctions & Preps',desc:'Chinh phục 72 Liên từ & Giới từ TOEIC. Tích hợp Flashcards lật 3D, từ vựng và Quiz tự động chấm.',tag:'Reading',cls:'c5'},
     {key:'part7',ico:'📑',name:'Part 7 — Reading',desc:'Đọc passage + trả lời — học tư duy scan/skim từ chuyên gia ORI. Mẹo tiết kiệm thời gian.',tag:'Reading',cls:'c6'},
     {key:'vocab',ico:'📚',name:'Từ Vựng TOEIC',desc:'600 từ chia theo band 450→800+. Học đúng level, không học thừa không học thiếu.',tag:'Vocabulary',cls:'c7'},
     {key:'quiz',ico:'✈️',name:'Quiz Aviation TOEIC',desc:'5 bộ đề x 25 câu — luyện TOEIC chuyên ngành hàng không Cabin Crew. Chấm điểm tự động.',tag:'Test Bank',cls:'c3'},
@@ -357,16 +360,16 @@ function renderDashboard(){
   [cards[2], cards[3]].forEach(function(c){ h += buildCard(c); });
   // Part 3/4 active
   h += '<div class="dash-card c4" onclick="window.location.href=\\\'part34/index.html\\\'"><div class="dc-ico">💬</div><div class="dc-name">Part 3/4 — Conversations</div><div class="dc-desc">Hội thoại ngắn + dài. Luyện kỹ năng Visualizing Context và Deep Debugging.</div><span class="dc-tag">Listening</span></div>';
-  [cards[4]].forEach(function(c){ h += buildCard(c); });
+  [cards[4], cards[5]].forEach(function(c){ h += buildCard(c); });
   // Part 6
   h += '<div class="dash-card c5" onclick="go(\'part6\')"><div class="dc-ico">📄</div><div class="dc-name">Part 6 — Text Completion</div><div class="dc-desc">Điền từ vào đoạn văn (Theme Bamboo Airways). Ngữ pháp + Từ vựng + Sentence Insertion.</div><span class="dc-tag">Reading</span></div>';
-  [cards[5]].forEach(function(c){ h += buildCard(c); });
+  [cards[6]].forEach(function(c){ h += buildCard(c); });
   h += '</div>';
 
   // Tools
   h += '<div class="section-title">🧰 Công cụ bổ trợ</div>';
   h += '<div class="dash-grid">';
-  [cards[6], cards[7], cards[8]].forEach(function(c){
+  [cards[7], cards[8], cards[9]].forEach(function(c){
     h += buildCard(c);
   });
   h += '</div>';
