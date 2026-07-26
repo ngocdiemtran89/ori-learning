@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORI TOEIC — Part 5 Mindmap & Masterclass</title>
+<meta name="description" content="Sơ đồ tư duy (Mindmap) TOEIC Part 5 toàn diện — Thống kê % dạng bài, Mẹo Collocation & Gia đình từ Word Family từ ORI Academy.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0f19;
+  --sidebar: #111625;
+  --card: #161c2e;
+  --card-hover: #1c243b;
+  --border: #232c45;
+  --border-glow: rgba(108,92,231,0.25);
+  
+  --text: #f1f5f9;
+  --text-dim: #94a3b8;
+  --text-muted: #64748b;
+  
+  --primary: #4f46e5;
+  --primary-glow: rgba(79,70,229,0.2);
+  --accent: #3b82f6;
+  --teal: #10b981;
+  --purple: #8b5cf6;
+  --pink: #ec4899;
+  --orange: #f59e0b;
+  --red: #ef4444;
+  
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --sidebar: #ffffff;
+  --card: #ffffff;
+  --card-hover: #f1f5f9;
+  --border: #e2e8f0;
+  --border-glow: rgba(79,70,229,0.15);
+  --text: #0f172a;
+  --text-dim: #475569;
+  --text-muted: #94a3b8;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+  padding-bottom: 40px;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* TOP BRAND & STATS HEADER */
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 20px;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+}
+.brand-title h1 {
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-title p {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.theme-btn, .trap-btn {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: var(--transition);
+  font-family: inherit;
+}
+.trap-btn {
+  background: rgba(245,158,11,0.1);
+  border-color: rgba(245,158,11,0.3);
+  color: var(--orange);
+}
+.trap-btn:hover {
+  background: var(--orange);
+  color: #000;
+}
+.theme-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* STATS ROW (3 Cards Header) */
+.stats-banner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: var(--transition);
+}
+.stat-box:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+}
+.stat-ico {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.stat-ico.purple { background: rgba(139,92,246,0.12); color: #8b5cf6; }
+.stat-ico.blue { background: rgba(59,130,246,0.12); color: #3b82f6; }
+.stat-ico.orange { background: rgba(245,158,11,0.12); color: #f59e0b; }
+
+.stat-info .stat-lbl {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+.stat-info .stat-val {
+  font-size: 24px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 2px 0;
+}
+.stat-info .stat-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* MINDMAP SECTION */
+.mindmap-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.mindmap-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.mindmap-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.mindmap-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.mm-node {
+  background: var(--bg);
+  border: 1.5px solid var(--node-color, #3b82f6);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  position: relative;
+  transition: var(--transition);
+}
+.mm-node:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px var(--node-glow, rgba(59,130,246,0.3));
+}
+.mm-node-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--node-color, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.mm-node-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: var(--node-bg, rgba(59,130,246,0.15));
+  color: var(--node-color, #3b82f6);
+}
+.mm-node-list {
+  list-style: none;
+  font-size: 11px;
+  color: var(--text-dim);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mm-node-list li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.mm-node-list li::before {
+  content: '•';
+  color: var(--node-color, #3b82f6);
+  font-weight: 800;
+}
+
+/* MINDMAP PEDAGOGY TIPS BANNER */
+.mm-tips-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+}
+.tip-card-glow {
+  background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(59,130,246,0.08));
+  border: 1px solid rgba(139,92,246,0.25);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.tip-card-glow.orange {
+  background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(236,72,153,0.08));
+  border-color: rgba(245,158,11,0.25);
+}
+.tip-icon-lg {
+  font-size: 28px;
+  line-height: 1;
+}
+.tip-content-box h4 {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.tip-content-box p {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.tip-content-box code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: rgba(255,255,255,0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #a78bfa;
+}
+
+/* MAIN DASHBOARD GRID (2 Columns Layout) */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+}
+
+/* TOPIC CARDS GRID (Left Side) */
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.topic-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.topic-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--card-color, #3b82f6), transparent);
+  opacity: 0.7;
+}
+.topic-card:hover {
+  border-color: var(--card-color, #3b82f6);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(0,0,0,0.4);
+}
+.tc-badge-weight {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--card-bg, rgba(59,130,246,0.1));
+  color: var(--card-color, #3b82f6);
+  border: 1px solid var(--card-color, #3b82f6);
+}
+.tc-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-right: 60px;
+}
+.tc-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--card-bg, rgba(59,130,246,0.1));
+  color: var(--card-color, #3b82f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.tc-title-box h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.tc-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+.tc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.tc-status {
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+}
+.tc-status.started { color: var(--orange); }
+.tc-status.done { color: var(--teal); }
+
+.tc-btn {
+  background: transparent;
+  border: none;
+  color: var(--card-color, #3b82f6);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition);
+  font-family: inherit;
+}
+.tc-btn:hover {
+  transform: translateX(4px);
+  opacity: 0.85;
+}
+
+/* RIGHT SIDEBAR PANELS */
+.sidebar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.widget-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.widget-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.widget-title .title-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.widget-title .widget-link {
+  font-size: 11px;
+  color: #3b82f6;
+  text-decoration: none;
+  background: rgba(59,130,246,0.1);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.widget-title .widget-link:hover {
+  background: #3b82f6;
+  color: #fff;
+}
+
+/* PROGRESS WIDGET */
+.progress-donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+.donut-chart {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+.donut-chart svg {
+  transform: rotate(-90deg);
+  width: 90px;
+  height: 90px;
+}
+.donut-chart circle {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+.donut-bg { stroke: var(--border); }
+.donut-fill {
+  stroke: var(--teal);
+  stroke-dasharray: 251.2;
+  stroke-dashoffset: 251.2;
+  transition: stroke-dashoffset 1s ease-in-out;
+}
+.donut-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.donut-text .pct {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+}
+.donut-text .lbl {
+  font-size: 9px;
+  color: var(--text-muted);
+}
+.progress-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+}
+.prog-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+}
+.prog-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.prog-dot.done { background: var(--teal); }
+.prog-dot.started { background: var(--accent); }
+.prog-dot.todo { background: var(--text-muted); }
+
+/* DAILY TIP WIDGET */
+.tip-box {
+  background: linear-gradient(135deg, rgba(139,92,246,0.06), rgba(59,130,246,0.06));
+  border: 1px dashed rgba(139,92,246,0.3);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-top: 6px;
+}
+.tip-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #a78bfa;
+  margin-bottom: 8px;
+}
+.tip-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.tip-ex {
+  background: var(--bg);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  border-left: 3px solid #8b5cf6;
+}
+.tip-ex .en { color: var(--text); font-weight: 500; margin-bottom: 2px; }
+.tip-ex .vi { color: var(--text-muted); font-size: 11px; font-style: italic; }
+
+.refresh-tip-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+  transition: var(--transition);
+  font-family: inherit;
+}
+.refresh-tip-btn:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+/* QUICK PRACTICE WIDGET */
+.quick-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.quick-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.quick-item:hover {
+  border-color: var(--accent);
+  transform: translateX(3px);
+  background: var(--card-hover);
+}
+.qi-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.qi-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.qi-icon.p1 { background: rgba(139,92,246,0.15); color: #8b5cf6; }
+.qi-icon.p2 { background: rgba(59,130,246,0.15); color: #3b82f6; }
+.qi-icon.p3 { background: rgba(245,158,11,0.15); color: #f59e0b; }
+
+.qi-text .name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+.qi-text .desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.qi-arrow {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* PRACTICE & EXAM VIEW */
+.view-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+}
+.view-panel.active {
+  display: block;
+}
+
+.view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.back-dash-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  font-family: inherit;
+}
+.back-dash-btn:hover {
+  border-color: var(--accent);
+  background: var(--card-hover);
+}
+
+/* QUIZ QUESTION STYLING */
+.quiz-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.quiz-qnum {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.quiz-sentence {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+.blank-highlight {
+  border-bottom: 2px dashed var(--accent);
+  padding: 0 6px;
+  color: #3b82f6;
+  font-weight: 700;
+}
+.quiz-opts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.opt-btn {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.opt-btn:hover {
+  border-color: var(--accent);
+  background: rgba(59,130,246,0.05);
+}
+.opt-btn.correct {
+  border-color: var(--teal) !important;
+  background: rgba(16,185,129,0.12) !important;
+  color: var(--teal) !important;
+  font-weight: 700;
+}
+.opt-btn.wrong {
+  border-color: var(--red) !important;
+  background: rgba(239,68,68,0.12) !important;
+  color: var(--red) !important;
+  opacity: 0.7;
+}
+.opt-btn.disabled {
+  pointer-events: none;
+}
+
+.quiz-explanation {
+  display: none;
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+.quiz-explanation.show {
+  display: block;
+  animation: fadeIn 0.3s ease-out;
+}
+.quiz-explanation strong { color: var(--orange); }
+
+/* TRAP RADAR MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  padding: 20px;
+  overflow-y: auto;
+}
+.modal-overlay.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  max-width: 800px;
+  width: 100%;
+  padding: 24px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+}
+.trap-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+.trap-item {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+.trap-item h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 6px;
+}
+.trap-item p {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+  .mindmap-grid {
+    grid-template-columns: 1fr;
+  }
+  .mm-tips-banner {
+    grid-template-columns: 1fr;
+  }
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  .topics-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-banner {
+    grid-template-columns: 1fr;
+  }
+  .quiz-opts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- DASHBOARD VIEW -->
+  <div id="dash-view" class="view-panel active">
+    
+    <!-- HEADER BAR -->
+    <header class="header-top">
+      <div class="brand-box">
+        <div class="brand-logo">ORI</div>
+        <div class="brand-title">
+          <h1>Ngữ pháp TOEIC <span>Part 5 Master</span></h1>
+          <p>Phương pháp Phản xạ 3 Giây — Phân tích Bẫy ETS & 15 Chủ đề Cốt lõi</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="trap-btn" onclick="openTrapModal()">⚠️ Radar Bẫy ETS</button>
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()" title="Đổi giao diện">🌙</button>
+      </div>
+    </header>
+
+    <!-- STATS OVERVIEW CARDS -->
+    <section class="stats-banner">
+      <div class="stat-box">
+        <div class="stat-ico purple">📦</div>
+        <div class="stat-info">
+          <div class="stat-lbl">Tổng chủ đề</div>
+          <div class="stat-val">15</div>
+          <div class="stat-sub">chủ đề ngữ pháp ETS</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-ico blue">📄</div>
+        <div class="stat-info">
+          <div class="stat-lbl">Tổng bài học</div>
+          <div class="stat-val">30</div>
+          <div class="stat-sub">bài học lý thuyết & mẹo 3s</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-ico orange">❓</div>
+        <div class="stat-info">
+          <div class="stat-lbl">Ngân hàng câu hỏi</div>
+          <div class="stat-val">300+</div>
+          <div class="stat-sub">câu giải chi tiết tiếng Việt</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE MINDMAP SECTION -->
+    <section class="mindmap-section">
+      <div class="mindmap-header">
+        <h2>🧠 Sơ Đồ Tư Duy (Mindmap) TOEIC Part 5 & Tỷ Lệ Đề Thi</h2>
+        <span style="font-size:12px;color:var(--text-dim)">Phân bổ 30 câu hỏi Reading Part 5</span>
+      </div>
+
+      <div class="mindmap-grid">
+        
+        <!-- NODE 1: TỪ LOẠI -->
+        <div class="mm-node" style="--node-color:#3b82f6;--node-bg:rgba(59,130,246,0.12);--node-glow:rgba(59,130,246,0.3)">
+          <div class="mm-node-title">
+            <span>🧩 Từ Loại</span>
+            <span class="mm-node-badge">~40% (12 câu)</span>
+          </div>
+          <ul class="mm-node-list">
+            <li>Noun (Mạo từ + Adj + N)</li>
+            <li>Adj (Be + Adj, N + Adj)</li>
+            <li>Adv (Adv + V, Be + Adv + V3)</li>
+            <li>Verb (Biến thể chia thì)</li>
+            <li><strong style="color:#3b82f6">Word Family (Gia đình từ)</strong></li>
+          </ul>
+        </div>
+
+        <!-- NODE 2: ĐỘNG TỪ -->
+        <div class="mm-node" style="--node-color:#8b5cf6;--node-bg:rgba(139,92,246,0.12);--node-glow:rgba(139,92,246,0.3)">
+          <div class="mm-node-title">
+            <span>⏱️ Động Từ</span>
+            <span class="mm-node-badge">~25% (7-8 câu)</span>
+          </div>
+          <ul class="mm-node-list">
+            <li>12 Thì trọng tâm ETS</li>
+            <li>Bị động (Be + V3/ed)</li>
+            <li>V-ing & To-V (Danh động từ)</li>
+            <li>S-V Agreement (Sự hòa hợp)</li>
+          </ul>
+        </div>
+
+        <!-- NODE 3: LIÊN TỪ & GIỚI TỪ -->
+        <div class="mm-node" style="--node-color:#f59e0b;--node-bg:rgba(245,158,11,0.12);--node-glow:rgba(245,158,11,0.3)">
+          <div class="mm-node-title">
+            <span>🔗 Liên & Giới Từ</span>
+            <span class="mm-node-badge">~15% (4-5 câu)</span>
+          </div>
+          <ul class="mm-node-list">
+            <li>Liên từ + Mệnh đề (S+V)</li>
+            <li>Giới từ + N / V-ing</li>
+            <li>Trạng từ liên kết (However)</li>
+            <li><strong style="color:#f59e0b">Học theo Collocation</strong></li>
+          </ul>
+        </div>
+
+        <!-- NODE 4: ĐẠI TỪ -->
+        <div class="mm-node" style="--node-color:#ec4899;--node-bg:rgba(236,72,153,0.12);--node-glow:rgba(236,72,153,0.3)">
+          <div class="mm-node-title">
+            <span>👤 Đại Từ</span>
+            <span class="mm-node-badge">~10% (3 câu)</span>
+          </div>
+          <ul class="mm-node-list">
+            <li>Tính từ sở hữu (my/his)</li>
+            <li>Phản thân (by himself)</li>
+            <li>Another + N số ít</li>
+            <li>Other + N số nhiều</li>
+          </ul>
+        </div>
+
+        <!-- NODE 5: MỆNH ĐỀ QUAN HỆ & NÂNG CAO -->
+        <div class="mm-node" style="--node-color:#10b981;--node-bg:rgba(16,185,129,0.12);--node-glow:rgba(16,185,129,0.3)">
+          <div class="mm-node-title">
+            <span>🌿 MĐQH & Nâng Cao</span>
+            <span class="mm-node-badge">~10% (3 câu)</span>
+          </div>
+          <ul class="mm-node-list">
+            <li>Who / Which / That / Whose</li>
+            <li>Rút gọn MĐQH (V-ing / V3)</li>
+            <li>Thể giả định (S + V-bare)</li>
+            <li>Đảo ngữ phủ định</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- PEDAGOGY TIPS CARDS -->
+      <div class="mm-tips-banner">
+        
+        <div class="tip-card-glow">
+          <div class="tip-icon-lg">✨</div>
+          <div class="tip-content-box">
+            <h4>Mẹo 1: Học Từ Vựng theo Collocation (Cụm Từ Cố Định)</h4>
+            <p>Đừng học từng từ đơn lẻ! Học nguyên cụm từ ETS hay dùng để phản xạ chọn đáp án trong 2 giây mà không cần nghĩ lâu:<br>
+            • <code>conduct an investigation</code> (tiến hành điều tra)<br>
+            • <code>strictly prohibited</code> (nghiêm cấm tuyệt đối)<br>
+            • <code>meet customer demand</code> (đáp ứng nhu cầu khách hàng)<br>
+            • <code>highly recommended</code> (được đánh giá rất cao)</p>
+          </div>
+        </div>
+
+        <div class="tip-card-glow orange">
+          <div class="tip-icon-lg">👨‍👩‍👧‍👦</div>
+          <div class="tip-content-box">
+            <h4>Mẹo 2: Làm Công Thức Gia Đình Từ (Word Family) Hàng Ngày</h4>
+            <p>Học 1 từ biết 4 dạng từ (Root Word → N, V, Adj, Adv). Thường xuyên luyện công thức gia đình từ giúp bạn nâng x4 lần vốn từ và <strong>làm đúng 100% các câu Từ Loại (~40% đề Part 5)</strong>:<br>
+            • <code>inform (V)</code> → <code>information (N)</code> → <code>informative (Adj)</code> → <code>informatively (Adv)</code></p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- MAIN GRID 2 COLUMNS -->
+    <main class="main-grid">
+      
+      <!-- LEFT COLUMN: TOPIC CARDS -->
+      <section class="topics-grid" id="topicsGridContainer">
+        <!-- 15 TOPIC CARDS GENERATED BY JS -->
+      </section>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="sidebar-panel">
+        
+        <!-- PROGRESS WIDGET -->
+        <div class="widget-card">
+          <div class="widget-title">
+            <div class="title-left">
+              <span>🎯</span> Tiến độ ngữ pháp
+            </div>
+            <span class="widget-link" onclick="openTrapModal()">Mẹo bẫy ETS →</span>
+          </div>
+          <div class="progress-donut-wrap">
+            <div class="donut-chart">
+              <svg viewBox="0 0 100 100">
+                <circle class="donut-bg" cx="50" cy="50" r="40"/>
+                <circle class="donut-fill" id="donutFillCircle" cx="50" cy="50" r="40"/>
+              </svg>
+              <div class="donut-text">
+                <span class="pct" id="donutPctText">0%</span>
+                <span class="lbl">Hoàn thành</span>
+              </div>
+            </div>
+            <div class="progress-details">
+              <div class="prog-item"><span class="prog-dot done"></span> <strong id="progDoneCount">0</strong> Hoàn thành</div>
+              <div class="prog-item"><span class="prog-dot started"></span> <strong id="progStartedCount">0</strong> Đang học</div>
+              <div class="prog-item"><span class="prog-dot todo"></span> <strong id="progTodoCount">15</strong> Chưa bắt đầu</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAILY GRAMMAR TIP WIDGET -->
+        <div class="widget-card">
+          <div class="widget-title">
+            <div class="title-left">
+              <span>💡</span> Mẹo ngữ pháp hôm nay
+            </div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-formula" id="tipFormula">Used to + V vs Be used to + V-ing</div>
+            <div class="tip-desc" id="tipDesc">Used to + V: thói quen trong quá khứ.<br>Be/Get used to + V-ing: quen với việc gì ở hiện tại.</div>
+            <div class="tip-ex">
+              <div class="en" id="tipExEn">I used to smoke, but now I am used to waking up early.</div>
+              <div class="vi" id="tipExVi">(Tôi từng hút thuốc, nhưng giờ tôi đã quen thức dậy sớm.)</div>
+            </div>
+            <button class="refresh-tip-btn" onclick="nextDailyTip()">🔄 Đổi mẹo ngẫu nhiên khác</button>
+          </div>
+        </div>
+
+        <!-- QUICK PRACTICE WIDGET -->
+        <div class="widget-card">
+          <div class="widget-title">
+            <div class="title-left">
+              <span>⚡</span> Luyện tập nhanh
+            </div>
+          </div>
+          <div class="quick-list">
+            <div class="quick-item" onclick="startQuickPractice('mixed')">
+              <div class="qi-left">
+                <div class="qi-icon p1">🔀</div>
+                <div class="qi-text">
+                  <div class="name">Bài học hỗn hợp</div>
+                  <div class="desc">Trộn ngẫu nhiên các chủ đề</div>
+                </div>
+              </div>
+              <span class="qi-arrow">›</span>
+            </div>
+            <div class="quick-item" onclick="startQuickPractice('topic_select')">
+              <div class="qi-left">
+                <div class="qi-icon p2">📚</div>
+                <div class="qi-text">
+                  <div class="name">Ôn tập theo chủ đề</div>
+                  <div class="desc">Chọn chủ đề để luyện tập</div>
+                </div>
+              </div>
+              <span class="qi-arrow">›</span>
+            </div>
+            <div class="quick-item" onclick="startTimedExam()">
+              <div class="qi-left">
+                <div class="qi-icon p3">⏱️</div>
+                <div class="qi-text">
+                  <div class="name">Thi thử ngữ pháp</div>
+                  <div class="desc">20 câu hỏi - 30 phút</div>
+                </div>
+              </div>
+              <span class="qi-arrow">›</span>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- PRACTICE & LESSON VIEW -->
+  <div id="practice-view" class="view-panel">
+    <div class="view-header">
+      <button class="back-dash-btn" onclick="showDashboard()">← Trở về Trang Chủ</button>
+      <h2 id="practiceTopicTitle" style="font-size:18px;font-weight:700">1. Adjectives - Tính từ</h2>
+      <div></div>
+    </div>
+    
+    <div id="practiceContentArea">
+      <!-- DYNAMIC PRACTICE CONTENT -->
+    </div>
+  </div>
+
+  <!-- TIMED EXAM VIEW -->
+  <div id="exam-view" class="view-panel">
+    <div class="view-header">
+      <button class="back-dash-btn" onclick="showDashboard()">← Thoát Thi Thử</button>
+      <h2 style="font-size:18px;font-weight:700">⏱️ Thi Thử Ngữ Pháp Part 5 (20 Câu)</h2>
+      <div class="exam-timer" id="examTimer">30:00</div>
+    </div>
+
+    <div id="examContentArea">
+      <!-- DYNAMIC EXAM CONTENT -->
+    </div>
+  </div>
+
+</div>
+
+<!-- TRAP RADAR MODAL -->
+<div class="modal-overlay" id="trapModal" onclick="if(event.target===this)closeTrapModal()">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeTrapModal()">✕</button>
+    <h3 style="font-size:18px;font-weight:800;color:var(--orange);display:flex;align-items:center;gap:8px">⚠️ Phân Tích Bẫy ETS Thường Gặp Trong TOEIC Part 5</h3>
+    <p style="font-size:12px;color:var(--text-dim);margin-top:4px">Kinh nghiệm từ các Chuyên gia Luyện thi ORI Academy — Nắm vững để không mất điểm oan!</p>
+    
+    <div class="trap-grid">
+      <div class="trap-item">
+        <h4>1. Bẫy Tính Từ đuôi -ing vs -ed</h4>
+        <p><strong>Sai lầm:</strong> Nghĩ rằng -ing chỉ vật, -ed chỉ người.<br><strong>Đúng chuẩn ETS:</strong> <em>-ing</em> chỉ tính chất/bản chất vốn có (an <u>interesting</u> presentation, an <u>existing</u> policy), <em>-ed</em> chỉ trạng thái cảm xúc bị tác động (a <u>satisfied</u> client, an <u>interested</u> buyer).</p>
+      </div>
+      <div class="trap-item">
+        <h4>2. Bẫy Cụm Danh Từ Ghép (Compound Nouns)</h4>
+        <p><strong>Sai lầm:</strong> Nhìn thấy khoảng trống đứng trước Danh từ là vội chọn Tính từ.<br><strong>Đúng chuẩn ETS:</strong> Nhiều trường hợp ETS bắt điền Danh từ đóng vai trò bổ nghĩa (e.g. <u>safety</u> regulations, <u>customer</u> satisfaction, <u>construction</u> site, <u>sales</u> representative).</p>
+      </div>
+      <div class="trap-item">
+        <h4>3. Bẫy Rút Gọn Mệnh Đề Quan Hệ (V-ing / V3-ed)</h4>
+        <p><strong>Sai lầm:</strong> Tưởng câu thiếu Động từ chính rồi vội chia thì (is/was/will).<br><strong>Đúng chuẩn ETS:</strong> Động từ chính đã có ở đằng sau rồi! Cần rút gọn: Dạng chủ động dùng <strong>V-ing</strong> (The candidate <u>seeking</u> employment), dạng bị động dùng <strong>V3/ed</strong> (The report <u>prepared</u> by Mr. Park).</p>
+      </div>
+      <div class="trap-item">
+        <h4>4. Bẫy Liên Từ (+ S + V) vs Giới Từ (+ N / V-ing)</h4>
+        <p><strong>Sai lầm:</strong> Chỉ dịch nghĩa tiếng Việt nên chọn nhầm <em>Although</em> cho cụm Noun.<br><strong>Đúng chuẩn ETS:</strong> <em>Although / Because / While / Provided that</em> bắt buộc + <strong>S + V</strong>. Trong khi <em>Despite / In spite of / Because of / Due to / Prior to</em> bắt buộc + <strong>N / V-ing</strong>.</p>
+      </div>
+      <div class="trap-item">
+        <h4>5. Bẫy Phân Biệt Other / Another / Others / The other</h4>
+        <p><strong>Công thức phản xạ 3s:</strong><br>• <strong>Another</strong> + Danh từ số ít (another option)<br>• <strong>Other</strong> + Danh từ số nhiều / N không đếm được (other options)<br>• <strong>Others</strong> = Other + N số nhiều (đứng độc lập làm S/O, không theo sau bởi N nữa)</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ======================================================================
+// 15 TOEIC GRAMMAR TOPICS DATASET WITH ETS WEIGHT & EXPANDED QUESTIONS
+// ======================================================================
+const TOPICS = [
+  {
+    id: "adj",
+    num: 1,
+    titleEn: "Adjectives",
+    titleVi: "Tính từ",
+    icon: "Aa",
+    color: "#3b82f6",
+    weight: "~40% Xuất hiện",
+    lessons: 2,
+    questionsCount: 25,
+    desc: "Vị trí tính từ (trước N, sau Be/Linking V), đuôi nhận biết (-ful, -less, -ous, -ive), tính từ -ing vs -ed.",
+    questions: [
+      { q: "The company gave an _____ presentation to potential investors.", opts: ["(A) impress", "(B) impressive", "(C) impressively", "(D) impression"], correct: 1, explain: "Cụm danh từ: an + _____ + presentation (N) → Cần Tính từ 'impressive'." },
+      { q: "The new policy is _____ for all full-time employees.", opts: ["(A) apply", "(B) applicable", "(C) application", "(D) applicably"], correct: 1, explain: "Sau động từ To be (is) → Cần Tính từ bổ nghĩa 'applicable'." },
+      { q: "The manager seems _____ about the upcoming product launch.", opts: ["(A) enthusiasm", "(B) enthusiastic", "(C) enthusiastically", "(D) enthusiast"], correct: 1, explain: "Sau linking verb (seems) → Cần Tính từ 'enthusiastic'." }
+    ]
+  },
+  {
+    id: "adv",
+    num: 2,
+    titleEn: "Adverbs",
+    titleVi: "Trạng từ",
+    icon: "⚡",
+    color: "#8b5cf6",
+    weight: "~40% Xuất hiện",
+    lessons: 2,
+    questionsCount: 25,
+    desc: "Vị trí trạng từ (trước V, sau V, giữa trợ V và V3, bổ nghĩa Adj), trạng từ liên kết (however, furthermore).",
+    questions: [
+      { q: "The marketing team _____ approved the new campaign strategy.", opts: ["(A) quick", "(B) quickly", "(C) quickness", "(D) quicken"], correct: 1, explain: "Đứng trước động từ thường (approved) → Cần Trạng từ 'quickly'." },
+      { q: "The report has been _____ reviewed by our legal team.", opts: ["(A) thorough", "(B) thoroughly", "(C) thoroughness", "(D) more thorough"], correct: 1, explain: "Vị trí vàng giữa trợ động từ (has been) và V3 (reviewed) → Trạng từ 'thoroughly'." }
+    ]
+  },
+  {
+    id: "pronoun",
+    num: 3,
+    titleEn: "Pronouns",
+    titleVi: "Đại từ & Sở hữu",
+    icon: "👤",
+    color: "#f59e0b",
+    weight: "~10% Xuất hiện",
+    lessons: 2,
+    questionsCount: 20,
+    desc: "Đại từ nhân xưng, tính từ sở hữu, đại từ phản thân (myself/himself), phân biệt other/another.",
+    questions: [
+      { q: "Mr. Kim handled the entire client presentation by _____.", opts: ["(A) he", "(B) him", "(C) his", "(D) himself"], correct: 3, explain: "Cấu trúc by + reflexive pronoun (by himself = tự thân ông ấy làm)." },
+      { q: "Please place your luggage next to _____.", opts: ["(A) ours", "(B) our", "(C) we", "(D) us"], correct: 0, explain: "Sau giới từ to + đại từ sở hữu 'ours' (= our luggage)." }
+    ]
+  },
+  {
+    id: "noun",
+    num: 4,
+    titleEn: "Nouns",
+    titleVi: "Danh từ & Mạo từ",
+    icon: "📕",
+    color: "#ec4899",
+    weight: "~40% Xuất hiện",
+    lessons: 2,
+    questionsCount: 25,
+    desc: "Danh từ đếm được / không đếm được, danh từ ghép (compound nouns), mạo từ a/an/the.",
+    questions: [
+      { q: "The CEO made a _____ to expand into overseas markets.", opts: ["(A) decide", "(B) decision", "(C) decisive", "(D) decisively"], correct: 1, explain: "Mạo từ a + _____ → Cần Danh từ 'decision'." },
+      { q: "We require written _____ before proceeding with the order.", opts: ["(A) confirm", "(B) confirmed", "(C) confirmation", "(D) confirming"], correct: 2, explain: "Sau tính từ (written) → Cần Danh từ 'confirmation'." }
+    ]
+  },
+  {
+    id: "partsofspeech",
+    num: 5,
+    titleEn: "Parts of Speech",
+    titleVi: "Bài tập từ loại",
+    icon: "🔠",
+    color: "#10b981",
+    weight: "Trọng tâm Part 5",
+    lessons: 1,
+    questionsCount: 30,
+    desc: "Phương pháp nhìn vị trí khoảng trống 3 giây chọn ngay biến thể từ loại N, V, Adj, Adv.",
+    questions: [
+      { q: "The factory operates _____ to meet customer demand.", opts: ["(A) efficient", "(B) efficiency", "(C) efficiently", "(D) efficiencies"], correct: 2, explain: "Bổ nghĩa cho động từ operates → Dùng Trạng từ 'efficiently'." }
+    ]
+  },
+  {
+    id: "verb",
+    num: 6,
+    titleEn: "Verbs & Tenses",
+    titleVi: "Động từ & Các thì",
+    icon: "⏱️",
+    color: "#3b82f6",
+    weight: "~25% Xuất hiện",
+    lessons: 2,
+    questionsCount: 25,
+    desc: "12 thì trọng tâm TOEIC, hòa hợp thời gian (tense agreement), nhận biết dấu hiệu thời gian.",
+    questions: [
+      { q: "The company _____ its quarterly revenue figures tomorrow.", opts: ["(A) announces", "(B) announced", "(C) will announce", "(D) has announced"], correct: 2, explain: "Trạng từ thời gian 'tomorrow' → Dùng thì tương lai đơn 'will announce'." }
+    ]
+  },
+  {
+    id: "gerund",
+    num: 7,
+    titleEn: "Gerunds & Infinitives",
+    titleVi: "Danh động từ & Động từ nguyên mẫu",
+    icon: "🔄",
+    color: "#8b5cf6",
+    weight: "~25% Xuất hiện",
+    lessons: 2,
+    questionsCount: 20,
+    desc: "Động từ đi với To-V (decide, plan), V-ing (consider, enjoy, avoid), Bare V (let, make).",
+    questions: [
+      { q: "The committee agreed _____ the budget proposal.", opts: ["(A) approve", "(B) to approve", "(C) approving", "(D) approved"], correct: 1, explain: "Động từ agree đi với To-V → 'agree to approve'." }
+    ]
+  },
+  {
+    id: "passive",
+    num: 8,
+    titleEn: "Active and Passive voice",
+    titleVi: "Câu chủ động và bị động",
+    icon: "🔄",
+    color: "#f59e0b",
+    weight: "~25% Xuất hiện",
+    lessons: 1,
+    questionsCount: 20,
+    desc: "Công thức bị động 12 thì, bị động với động từ 2 tân ngữ (give, offer, send).",
+    questions: [
+      { q: "The annual financial report was _____ by the auditing firm.", opts: ["(A) prepare", "(B) preparing", "(C) prepared", "(D) preparation"], correct: 2, explain: "Câu bị động: was + V3/ed → 'was prepared'." }
+    ]
+  },
+  {
+    id: "svagreement",
+    num: 9,
+    titleEn: "Subject-Verb agreement",
+    titleVi: "Sự hòa hợp Chủ ngữ - Động từ",
+    icon: "⚖️",
+    color: "#ec4899",
+    weight: "~25% Xuất hiện",
+    lessons: 1,
+    questionsCount: 20,
+    desc: "Quy tắc chia động từ với chủ ngữ ghép, Each/Every, Either/Neither, Along with, As well as.",
+    questions: [
+      { q: "Each of the applicants _____ required to complete an assessment.", opts: ["(A) is", "(B) are", "(C) possess", "(D) have"], correct: 0, explain: "Chủ ngữ 'Each of...' luôn đi với động từ số ít 'is'." }
+    ]
+  },
+  {
+    id: "comparison",
+    num: 10,
+    titleEn: "Comparison Sentences",
+    titleVi: "Câu so sánh",
+    icon: "📊",
+    color: "#10b981",
+    weight: "~5% Xuất hiện",
+    lessons: 1,
+    questionsCount: 15,
+    desc: "So sánh bằng (as...as), hơn (more/-er), nhất (most/-est), so sánh kép (The more... the more...).",
+    questions: [
+      { q: "This strategy is much more effective _____ the previous one.", opts: ["(A) as", "(B) than", "(C) with", "(D) from"], correct: 1, explain: "So sánh hơn 'more effective... than'." }
+    ]
+  },
+  {
+    id: "prep",
+    num: 11,
+    titleEn: "Prepositions",
+    titleVi: "Giới từ",
+    icon: "📍",
+    color: "#3b82f6",
+    weight: "~15% Xuất hiện",
+    lessons: 2,
+    questionsCount: 25,
+    desc: "Giới từ thời gian, nơi chốn, cụm giới từ cố định đi kèm với N/V/Adj.",
+    questions: [
+      { q: "The conference will take place _____ October 15th.", opts: ["(A) in", "(B) on", "(C) at", "(D) for"], correct: 1, explain: "Giới từ đi với ngày cụ thể (October 15th) là 'on'." }
+    ]
+  },
+  {
+    id: "conj",
+    num: 12,
+    titleEn: "Conjunctions & Connectors",
+    titleVi: "Liên từ & Từ nối",
+    icon: "🔗",
+    color: "#8b5cf6",
+    weight: "~15% Xuất hiện",
+    lessons: 2,
+    questionsCount: 20,
+    desc: "Bẫy phân biệt Liên từ + Clause (Although/Because) vs Giới từ + N (Despite/Because of).",
+    questions: [
+      { q: "_____ the heavy rain, the outdoor event continued as planned.", opts: ["(A) Although", "(B) Despite", "(C) Because", "(D) Unless"], correct: 1, explain: "Trước cụm Noun 'the heavy rain' → Dùng giới từ chỉ nhượng bộ 'Despite'." }
+    ]
+  },
+  {
+    id: "relative",
+    num: 13,
+    titleEn: "Relative Clause",
+    titleVi: "Mệnh đề quan hệ",
+    icon: "🌿",
+    color: "#f59e0b",
+    weight: "~10% Xuất hiện",
+    lessons: 2,
+    questionsCount: 20,
+    desc: "Who, Whom, Which, That, Whose và bẫy rút gọn mệnh đề quan hệ dạng V-ing / V3.",
+    questions: [
+      { q: "The technician _____ repaired the server received an award.", opts: ["(A) who", "(B) which", "(C) whom", "(D) whose"], correct: 0, explain: "Đại từ quan hệ thay thế cho người (technician) làm chủ ngữ → 'who'." }
+    ]
+  },
+  {
+    id: "modal",
+    num: 14,
+    titleEn: "Modal Verbs & Conditionals",
+    titleVi: "Động từ khuyết thiếu & Câu điều kiện",
+    icon: "⚡",
+    color: "#ec4899",
+    weight: "~5% Xuất hiện",
+    lessons: 1,
+    questionsCount: 15,
+    desc: "Can, Could, May, Must, Should, Câu điều kiện Types 1-3 & Đảo ngữ If (Should S + V...).",
+    questions: [
+      { q: "If we receive the parts today, we _____ complete assembly by Friday.", opts: ["(A) would", "(B) will", "(C) had", "(D) did"], correct: 1, explain: "Câu điều kiện loại 1 (mệnh đề If hiện tại) → mệnh đề chính dùng 'will'." }
+    ]
+  },
+  {
+    id: "subjunctive",
+    num: 15,
+    titleEn: "Subjunctive & Inversion",
+    titleVi: "Thể giả định & Đảo ngữ",
+    icon: "👑",
+    color: "#10b981",
+    weight: "~5% Xuất hiện",
+    lessons: 1,
+    questionsCount: 15,
+    desc: "Cấu trúc giả định (suggest that S + V bare), đảo ngữ với No sooner... than, Not until.",
+    questions: [
+      { q: "The consultant recommended that the project _____ postponed.", opts: ["(A) is", "(B) be", "(C) was", "(D) been"], correct: 1, explain: "Cấu trúc giả định recommend that + S + V bare (be postponed)." }
+    ]
+  }
+];
+
+// GRAMMAR TIPS COLLECTION
+const GRAMMAR_TIPS = [
+  {
+    formula: "Used to + V vs Be/Get used to + V-ing",
+    desc: "Used to + V: thói quen trong quá khứ.\nBe/Get used to + V-ing: quen với việc gì ở hiện tại.",
+    en: "I used to smoke, but now I am used to waking up early.",
+    vi: "(Tôi từng hút thuốc, nhưng giờ tôi đã quen thức dậy sớm.)"
+  },
+  {
+    formula: "Although / Even though + S + V vs Despite / In spite of + N",
+    desc: "Although đi với một mệnh đề (S + V).\nDespite / In spite of đi với một danh từ hoặc V-ing.",
+    en: "Although it rained heavily, we attended the meeting.",
+    vi: "(Mặc dù trời mưa to, chúng tôi vẫn tham gia cuộc họp.)"
+  },
+  {
+    formula: "Prefer A to B vs Would rather V than V",
+    desc: "Prefer đi với giới từ TO (Prefer + N/V-ing + to + N/V-ing).\nWould rather đi với THAN và Động từ nguyên mẫu.",
+    en: "I prefer tea to coffee. / I would rather stay than leave.",
+    vi: "(Tôi thích trà hơn cà phê / Tôi thà ở lại còn hơn rời đi.)"
+  },
+  {
+    formula: "Because + S + V vs Because of + N / V-ing",
+    desc: "Because đứng trước một mệnh đề.\nBecause of đứng trước danh từ/cụm danh từ.",
+    en: "Because of the rain, the flight was delayed.",
+    vi: "(Bởi vì cơn mưa, chuyến bay đã bị hoãn.)"
+  }
+];
+
+let currentTipIndex = 0;
+
+// STATE MANAGEMENT
+function getProgressState() {
+  try {
+    return JSON.parse(localStorage.getItem('ori_p5_progress_v2')) || {};
+  } catch(e) { return {}; }
+}
+
+function saveProgressState(topicId, status) {
+  const state = getProgressState();
+  state[topicId] = status;
+  localStorage.setItem('ori_p5_progress_v2', JSON.stringify(state));
+  updateProgressWidget();
+}
+
+// RENDER TOPIC CARDS
+function renderTopicCards() {
+  const container = document.getElementById('topicsGridContainer');
+  const state = getProgressState();
+  
+  let html = '';
+  TOPICS.forEach(topic => {
+    const status = state[topic.id] || 'todo';
+    let statusText = 'Chưa bắt đầu';
+    let statusClass = '';
+    if (status === 'started') { statusText = 'Đang học'; statusClass = 'started'; }
+    if (status === 'done') { statusText = 'Hoàn thành ✓'; statusClass = 'done'; }
+
+    html += `
+      <div class="topic-card" style="--card-color:${topic.color};--card-bg:${topic.color}15">
+        <span class="tc-badge-weight">${topic.weight}</span>
+        <div>
+          <div class="tc-header">
+            <div class="tc-icon">${topic.num}</div>
+            <div class="tc-title-box">
+              <h3>${topic.num}. ${topic.titleEn} - ${topic.titleVi}</h3>
+              <div class="tc-meta">
+                <span>📖 ${topic.lessons} bài học</span>
+                <span>❓ ${topic.questionsCount} câu hỏi</span>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--text-dim);line-height:1.5">${topic.desc}</p>
+        </div>
+        <div class="tc-footer">
+          <div class="tc-status ${statusClass}">${statusText}</div>
+          <button class="tc-btn" onclick="openTopicPractice('${topic.id}')">Luyện tập →</button>
+        </div>
+      </div>
+    `;
+  });
+  
+  container.innerHTML = html;
+  updateProgressWidget();
+}
+
+// UPDATE PROGRESS WIDGET
+function updateProgressWidget() {
+  const state = getProgressState();
+  let doneCount = 0, startedCount = 0;
+  
+  TOPICS.forEach(t => {
+    if (state[t.id] === 'done') doneCount++;
+    else if (state[t.id] === 'started') startedCount++;
+  });
+  
+  const todoCount = TOPICS.length - (doneCount + startedCount);
+  const pct = Math.round((doneCount / TOPICS.length) * 100);
+  
+  document.getElementById('progDoneCount').textContent = doneCount;
+  document.getElementById('progStartedCount').textContent = startedCount;
+  document.getElementById('progTodoCount').textContent = todoCount;
+  document.getElementById('donutPctText').textContent = pct + '%';
+  
+  const circle = document.getElementById('donutFillCircle');
+  const radius = 40;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (pct / 100) * circumference;
+  circle.style.strokeDasharray = circumference;
+  circle.style.strokeDashoffset = offset;
+}
+
+// DAILY TIP ROTATION
+function nextDailyTip() {
+  currentTipIndex = (currentTipIndex + 1) % GRAMMAR_TIPS.length;
+  const tip = GRAMMAR_TIPS[currentTipIndex];
+  document.getElementById('tipFormula').textContent = tip.formula;
+  document.getElementById('tipDesc').textContent = tip.desc;
+  document.getElementById('tipExEn').textContent = tip.en;
+  document.getElementById('tipExVi').textContent = tip.vi;
+}
+
+// TRAP MODAL CONTROL
+function openTrapModal() {
+  document.getElementById('trapModal').classList.add('show');
+}
+function closeTrapModal() {
+  document.getElementById('trapModal').classList.remove('show');
+}
+
+// PRACTICE FLOW
+function openTopicPractice(topicId) {
+  const topic = TOPICS.find(t => t.id === topicId);
+  if(!topic) return;
+
+  saveProgressState(topicId, 'started');
+
+  document.getElementById('dash-view').classList.remove('active');
+  document.getElementById('exam-view').classList.remove('active');
+  document.getElementById('practice-view').classList.add('active');
+
+  document.getElementById('practiceTopicTitle').textContent = `${topic.num}. ${topic.titleEn} — ${topic.titleVi}`;
+
+  let html = `<div style="margin-bottom:20px;background:var(--card);padding:20px;border-radius:12px;border:1px solid var(--border)">
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:8px;color:${topic.color}">💡 Tóm tắt lý thuyết & Mẹo Phản xạ 3s</h3>
+    <p style="font-size:13px;color:var(--text-dim)">${topic.desc}</p>
+  </div>`;
+
+  topic.questions.forEach((q, idx) => {
+    html += `
+      <div class="quiz-card" id="qcard-${idx}">
+        <div class="quiz-qnum">
+          <span>Câu ${idx+1} / ${topic.questions.length}</span>
+          <span style="color:var(--orange)">Tỉ lệ xuất hiện: ${topic.weight}</span>
+        </div>
+        <div class="quiz-sentence">${q.q.replace('_____', '<span class="blank-highlight">_____</span>')}</div>
+        <div class="quiz-opts-grid">
+          ${q.opts.map((o, optIdx) => `
+            <button class="opt-btn" onclick="checkAnswer('${topic.id}', ${idx}, ${optIdx}, ${q.correct})">${o}</button>
+          `).join('')}
+        </div>
+        <div class="quiz-explanation" id="qexp-${idx}">
+          <strong>Giải thích chi tiết:</strong> ${q.explain}
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById('practiceContentArea').innerHTML = html;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function checkAnswer(topicId, qIdx, selectedOpt, correctOpt) {
+  const card = document.getElementById(`qcard-${qIdx}`);
+  const opts = card.querySelectorAll('.opt-btn');
+  
+  if (opts[0].classList.contains('disabled')) return;
+  
+  opts.forEach((btn, i) => {
+    btn.classList.add('disabled');
+    if (i === correctOpt) btn.classList.add('correct');
+    if (i === selectedOpt && i !== correctOpt) btn.classList.add('wrong');
+  });
+
+  document.getElementById(`qexp-${qIdx}`).classList.add('show');
+}
+
+function showDashboard() {
+  document.getElementById('practice-view').classList.remove('active');
+  document.getElementById('exam-view').classList.remove('active');
+  document.getElementById('dash-view').classList.add('active');
+  renderTopicCards();
+}
+
+// QUICK PRACTICE & TIMED EXAM
+function startQuickPractice(mode) {
+  if (mode === 'topic_select') {
+    openTopicPractice(TOPICS[0].id);
+  } else {
+    openTopicPractice(TOPICS[Math.floor(Math.random() * TOPICS.length)].id);
+  }
+}
+
+let timerInterval;
+function startTimedExam() {
+  document.getElementById('dash-view').classList.remove('active');
+  document.getElementById('practice-view').classList.remove('active');
+  document.getElementById('exam-view').classList.add('active');
+
+  let timeLeft = 30 * 60;
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    const mins = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+    const secs = (timeLeft % 60).toString().padStart(2, '0');
+    document.getElementById('examTimer').textContent = `${mins}:${secs}`;
+    if (timeLeft <= 0) clearInterval(timerInterval);
+  }, 1000);
+
+  let examQuestions = [];
+  TOPICS.forEach(t => examQuestions.push(...t.questions));
+  examQuestions = examQuestions.sort(() => 0.5 - Math.random()).slice(0, 20);
+
+  let html = '';
+  examQuestions.forEach((q, idx) => {
+    html += `
+      <div class="quiz-card" id="excard-${idx}">
+        <div class="quiz-qnum">Câu ${idx+1} / 20</div>
+        <div class="quiz-sentence">${q.q.replace('_____', '<span class="blank-highlight">_____</span>')}</div>
+        <div class="quiz-opts-grid">
+          ${q.opts.map((o, optIdx) => `
+            <button class="opt-btn" onclick="checkExamAnswer(${idx}, ${optIdx}, ${q.correct})">${o}</button>
+          `).join('')}
+        </div>
+        <div class="quiz-explanation" id="exexp-${idx}">
+          <strong>Giải thích:</strong> ${q.explain}
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById('examContentArea').innerHTML = html;
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function checkExamAnswer(qIdx, selectedOpt, correctOpt) {
+  const card = document.getElementById(`excard-${qIdx}`);
+  const opts = card.querySelectorAll('.opt-btn');
+  if (opts[0].classList.contains('disabled')) return;
+  opts.forEach((btn, i) => {
+    btn.classList.add('disabled');
+    if (i === correctOpt) btn.classList.add('correct');
+    if (i === selectedOpt && i !== correctOpt) btn.classList.add('wrong');
+  });
+  document.getElementById(`exexp-${qIdx}`).classList.add('show');
+}
+
+// THEME TOGGLE
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  document.getElementById('themeToggle').textContent = next === 'dark' ? '🌙' : '☀️';
+}
+
+// INIT
+renderTopicCards();
+</script>
+</body>
+</html>
